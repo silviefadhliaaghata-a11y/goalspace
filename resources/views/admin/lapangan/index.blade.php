@@ -40,7 +40,7 @@
                         <td class="px-8 py-6">
                             @if(!empty($lapangan->gambar))
                                 <img
-                                    src="{{ \Illuminate\Support\Facades\Storage::url($lapangan->gambar) }}"
+                                    src="{{ asset('storage/' . $lapangan->gambar) }}"
                                     alt="{{ $lapangan->nama }}"
                                     class="w-24 h-16 object-cover rounded-2xl border border-white/10 group-hover:scale-105 transition-transform duration-500"
                                 >

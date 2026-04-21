@@ -51,7 +51,7 @@
             <div class="glass-card rounded-[3rem] overflow-hidden group hover:border-emerald-500/50 transition-all duration-500 flex flex-col">
                 <div class="h-64 relative overflow-hidden">
                     @if($lapangan->gambar)
-                        <img src="{{ \Illuminate\Support\Facades\Storage::url($lapangan->gambar) }}"
+                        <img src="{{ asset('storage/' . $lapangan->gambar) }}"
                              alt="{{ $lapangan->nama }}"
                              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                     @else
