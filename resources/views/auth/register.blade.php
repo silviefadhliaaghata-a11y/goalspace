@@ -59,9 +59,9 @@
             <div class="absolute -right-20 -top-20 w-40 h-40 bg-emerald-500/10 rounded-full blur-[60px]"></div>
             
             <div class="relative z-10">
-                @if (\$errors->any())
+                @if ($errors->any())
                     <div class="mb-6 p-4 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-400 text-[10px] font-bold uppercase tracking-wider italic">
-                        {{ \$errors->first() }}
+                        {{ $errors->first() }}
                     </div>
                 @endif
 
