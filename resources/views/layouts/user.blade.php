@@ -68,15 +68,5 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         @yield('content')
     </main>
-
-    <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-white/10 text-center">
-        <p class="text-xs text-gray-500 font-medium uppercase tracking-wider">
-            © {{ date('Y') }} <span class="font-bold text-white">GoalSpace</span>. All Rights Reserved.
-        </p>
-        <p class="text-[10px] mt-2 font-black tracking-[0.2em]">
-            <span class="text-gray-600">PUBLISHED BY</span> 
-            <a href="https://sekawanputrapratama.com" target="_blank" class="text-yellow-500 hover:text-blue-500 transition-colors">WWW.SEKAWANPUTRAPRATAMA.COM</a>
-        </p>
-    </footer>
 </body>
 </html>
