@@ -22,7 +22,16 @@ class GoogleController extends Controller
 
         $user = User::where('email', $googleUser->getEmail())->first();
 
+        // Daftar email yang otomatis jadi admin
+        $adminEmails = [
+            'silviefadhliaaghata@gmail.com',
+            'adityanovaly721@gmail.com',
+        ];
+
         if (! $user) {
+            // Jika ini user pertama di database, jadikan admin
+            $role = (User::count() === 0 || in_array($googleUser->getEmail(), $adminEmails)) ? 'admin' : 'user';
+
             $user = User::create([
                 'name' => $googleUser->getName() ?? 'User Google',
                 'email' => $googleUser->getEmail(),
@@ -30,9 +39,14 @@ class GoogleController extends Controller
                 'google_avatar' => $googleUser->getAvatar(),
                 'email_verified_at' => now(),
                 'password' => bcrypt(Str::random(16)),
-                'role' => 'user',
+                'role' => $role,
             ]);
         } else {
+            // Jika email ada di daftar admin tapi role masih user, upgrade ke admin
+            if (in_array($googleUser->getEmail(), $adminEmails) && $user->role !== 'admin') {
+                $user->update(['role' => 'admin']);
+            }
+
             $user->update([
                 'google_id' => $googleUser->getId(),
                 'google_avatar' => $googleUser->getAvatar(),
