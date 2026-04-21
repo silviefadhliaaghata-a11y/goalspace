@@ -55,13 +55,13 @@
                 <span>🏟️</span> Manajemen Lapangan
             </a>
 
-            <a href="{{ route('booking.index', $current_team) }}" 
-               class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-white/5 {{ request()->routeIs('booking.*') ? 'nav-link-active text-emerald-400' : 'text-slate-400' }}">
+            <a href="{{ route('admin.booking.index', $current_team) }}" 
+               class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-white/5 {{ request()->routeIs('admin.booking.*') ? 'nav-link-active text-emerald-400' : 'text-slate-400' }}">
                 <span>📅</span> Data Booking
             </a>
 
-            <a href="#" 
-               class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-white/5 text-slate-400">
+            <a href="{{ route('users.index', $current_team) }}" 
+               class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-white/5 {{ request()->routeIs('users.*') ? 'nav-link-active text-emerald-400' : 'text-slate-400' }}">
                 <span>👥</span> Manajemen User
             </a>
 
