@@ -262,13 +262,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('invitations.accept');
 });
 
-Route::middleware(['auth', 'verified', \App\Http\Middleware\EnsureTeamMembership::class])
-    ->prefix('{current_team}')
-    ->group(function () {
-        Route::get('/security/2fa', function () {
-            return view('auth.two-factor-settings');
-        })->name('2fa.settings');
-    });
+
 
 Route::get('/user/confirm-password', function () {
     return redirect()->route('dashboard');
