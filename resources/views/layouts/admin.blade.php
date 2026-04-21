@@ -46,47 +46,47 @@
             <p class="px-4 text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] mb-4 italic">Management</p>
             
             <a href="{{ route('admin.dashboard', $current_team) }}" 
-               class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-white/5 {{ request()->routeIs('admin.dashboard') ? 'nav-link-active text-emerald-400' : 'text-slate-400' }}">
+               class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-white/10 {{ request()->routeIs('admin.dashboard') ? 'nav-link-active text-emerald-400' : 'text-slate-200' }}">
                 📊 Dashboard
             </a>
 
             <a href="{{ route('lapangan.index', $current_team) }}" 
-               class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-white/5 {{ request()->routeIs('lapangan.*') ? 'nav-link-active text-emerald-400' : 'text-slate-400' }}">
+               class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-white/10 {{ request()->routeIs('lapangan.*') ? 'nav-link-active text-emerald-400' : 'text-slate-200' }}">
                 🏟️ Lapangan
             </a>
 
             <a href="{{ route('admin.booking.index', $current_team) }}" 
-               class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-white/5 {{ request()->routeIs('admin.booking.index') ? 'nav-link-active text-emerald-400' : 'text-slate-400' }}">
+               class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-white/10 {{ request()->routeIs('admin.booking.index') ? 'nav-link-active text-emerald-400' : 'text-slate-200' }}">
                 📅 Booking
             </a>
 
             <a href="{{ route('admin.booking.validasi.form', $current_team) }}" 
-               class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-white/5 {{ request()->routeIs('admin.booking.validasi.*') ? 'nav-link-active text-emerald-400' : 'text-slate-400' }}">
+               class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-white/10 {{ request()->routeIs('admin.booking.validasi.*') ? 'nav-link-active text-emerald-400' : 'text-slate-200' }}">
                 ✅ Validasi Booking
             </a>
 
             <a href="{{ route('users.index', $current_team) }}" 
-               class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-white/5 {{ request()->routeIs('users.*') ? 'nav-link-active text-emerald-400' : 'text-slate-400' }}">
+               class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-white/10 {{ request()->routeIs('users.*') ? 'nav-link-active text-emerald-400' : 'text-slate-200' }}">
                 👥 Data User
             </a>
 
             <a href="{{ route('admins.index', $current_team) }}" 
-               class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-white/5 {{ request()->routeIs('admins.*') ? 'nav-link-active text-emerald-400' : 'text-slate-400' }}">
+               class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-white/10 {{ request()->routeIs('admins.*') ? 'nav-link-active text-emerald-400' : 'text-slate-200' }}">
                 🛡️ Data Admin
             </a>
 
             <a href="{{ route('admin.booking.kalender', $current_team) }}" 
-               class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-white/5 {{ request()->routeIs('admin.booking.kalender') ? 'nav-link-active text-emerald-400' : 'text-slate-400' }}">
+               class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-white/10 {{ request()->routeIs('admin.booking.kalender') ? 'nav-link-active text-emerald-400' : 'text-slate-200' }}">
                 🗓️ Kalender
             </a>
 
             <a href="{{ route('laporan.index', $current_team) }}" 
-               class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-white/5 {{ request()->routeIs('laporan.*') ? 'nav-link-active text-emerald-400' : 'text-slate-400' }}">
+               class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-white/10 {{ request()->routeIs('laporan.*') ? 'nav-link-active text-emerald-400' : 'text-slate-200' }}">
                 📈 Laporan
             </a>
 
             <a href="{{ route('2fa.settings', $current_team) }}" 
-               class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-white/5 {{ request()->routeIs('2fa.*') ? 'nav-link-active text-emerald-400' : 'text-slate-400' }}">
+               class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-white/10 {{ request()->routeIs('2fa.*') ? 'nav-link-active text-emerald-400' : 'text-slate-200' }}">
                 🔒 Keamanan 2FA
             </a>
 
