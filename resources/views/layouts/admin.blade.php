@@ -7,232 +7,163 @@
         @hasSection('title')
             @yield('title') - {{ config('app.name') }}
         @else
-            {{ config('app.name') }} - Booking Lapangan Futsal
+            {{ config('app.name') }} - Admin Panel
         @endif
     </title>
-
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .sidebar-gradient {
+            background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+        }
+    </style>
 </head>
-<body class="min-h-screen bg-gray-100">
+<body class="bg-slate-50 text-slate-900 min-h-screen antialiased">
 @php
     $currentTeam = request()->route('current_team');
     $routeName = Route::currentRouteName();
 @endphp
 
-<div class="flex min-h-screen">
+<div class="flex min-h-screen overflow-hidden">
     {{-- Sidebar --}}
-    <aside class="w-64 bg-gray-900 text-white">
-        <div class="px-6 py-5 border-b border-gray-800">
-            <h1 class="text-2xl font-bold">{{ config('app.name') }}</h1>
-            <p class="text-sm text-gray-400 mt-1">Booking Lapangan Futsal Modern</p>
+    <aside class="w-72 sidebar-gradient text-white hidden lg:flex flex-col shrink-0">
+        <div class="px-8 py-8">
+            <div class="flex items-center gap-3 group">
+                <span class="text-3xl transition-transform group-hover:scale-110 duration-300">⚽</span>
+                <span class="text-xl font-black tracking-tighter uppercase">Goal<span class="text-emerald-400">Space</span></span>
+            </div>
+            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em] mt-3">Admin Control Center</p>
         </div>
 
-        <nav class="p-4 space-y-2 text-sm">
+        <nav class="flex-1 px-4 space-y-1 overflow-y-auto">
+            <div class="px-4 py-3 text-[10px] font-black text-slate-500 uppercase tracking-widest">Utama</div>
+            
             <a href="{{ route('admin.dashboard', $currentTeam) }}"
-               class="block px-4 py-2 rounded {{ $routeName == 'admin.dashboard' ? 'bg-gray-800' : 'hover:bg-gray-800' }}">
-                Dashboard
+               class="flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all font-bold text-sm {{ $routeName == 'admin.dashboard' ? 'bg-emerald-500 text-slate-950 shadow-lg shadow-emerald-500/20' : 'text-slate-400 hover:bg-white/5 hover:text-white' }}">
+                <span class="text-lg">📊</span> Dashboard
             </a>
 
+            <div class="px-4 py-3 text-[10px] font-black text-slate-500 uppercase tracking-widest mt-4">Manajemen</div>
+
             <a href="{{ route('lapangan.index', $currentTeam) }}"
-               class="block px-4 py-2 rounded {{ str_starts_with($routeName, 'lapangan') ? 'bg-gray-800' : 'hover:bg-gray-800' }}">
-                Lapangan
+               class="flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all font-bold text-sm {{ str_starts_with($routeName, 'lapangan') ? 'bg-emerald-500 text-slate-950' : 'text-slate-400 hover:bg-white/5 hover:text-white' }}">
+                <span class="text-lg">🏟️</span> Lapangan
             </a>
 
             <a href="{{ route('admin.booking.index', $currentTeam) }}"
-               class="block px-4 py-2 rounded {{ str_starts_with($routeName, 'admin.booking') ? 'bg-gray-800' : 'hover:bg-gray-800' }}">
-                Booking
+               class="flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all font-bold text-sm {{ str_starts_with($routeName, 'admin.booking') && !str_contains($routeName, 'kalender') ? 'bg-emerald-500 text-slate-950' : 'text-slate-400 hover:bg-white/5 hover:text-white' }}">
+                <span class="text-lg">📝</span> Daftar Booking
             </a>
+
             <a href="{{ route('admin.booking.validasi.form', $currentTeam) }}"
-   class="block px-4 py-2 rounded {{ str_starts_with($routeName, 'admin.booking.validasi') ? 'bg-gray-800' : 'hover:bg-gray-800' }}">
-    Validasi Booking
-</a>
+               class="flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all font-bold text-sm {{ str_starts_with($routeName, 'admin.booking.validasi') ? 'bg-emerald-500 text-slate-950' : 'text-slate-400 hover:bg-white/5 hover:text-white' }}">
+                <span class="text-lg">🛡️</span> Validasi Cepat
+            </a>
 
             <a href="{{ route('users.index', $currentTeam) }}"
-               class="block px-4 py-2 rounded {{ str_starts_with($routeName, 'users.') ? 'bg-gray-800' : 'hover:bg-gray-800' }}">
-                Data User
+               class="flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all font-bold text-sm {{ str_starts_with($routeName, 'users.') ? 'bg-emerald-500 text-slate-950' : 'text-slate-400 hover:bg-white/5 hover:text-white' }}">
+                <span class="text-lg">👥</span> Pelanggan
             </a>
 
-            <a href="{{ route('admins.index', $currentTeam) }}"
-               class="block px-4 py-2 rounded {{ str_starts_with($routeName, 'admins.') ? 'bg-gray-800' : 'hover:bg-gray-800' }}">
-                Data Admin
-            </a>
+            <div class="px-4 py-3 text-[10px] font-black text-slate-500 uppercase tracking-widest mt-4">Analitik & Tools</div>
 
             <a href="{{ route('admin.booking.kalender', $currentTeam) }}"
-               class="block px-4 py-2 rounded {{ $routeName == 'admin.booking.kalender' ? 'bg-gray-800' : 'hover:bg-gray-800' }}">
-                Kalender
+               class="flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all font-bold text-sm {{ $routeName == 'admin.booking.kalender' ? 'bg-emerald-500 text-slate-950' : 'text-slate-400 hover:bg-white/5 hover:text-white' }}">
+                <span class="text-lg">📅</span> Kalender Jadwal
             </a>
 
             <a href="{{ route('laporan.index', $currentTeam) }}"
-               class="block px-4 py-2 rounded {{ str_starts_with($routeName, 'laporan') ? 'bg-gray-800' : 'hover:bg-gray-800' }}">
-                Laporan
+               class="flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all font-bold text-sm {{ str_starts_with($routeName, 'laporan') ? 'bg-emerald-500 text-slate-950' : 'text-slate-400 hover:bg-white/5 hover:text-white' }}">
+                <span class="text-lg">📈</span> Laporan Keuangan
             </a>
-            <a href="{{ route('2fa.settings', $current_team) }}"
-   class="block px-4 py-2 rounded-lg hover:bg-slate-800 text-white/90">
-    Keamanan 2FA
-</a>
+
+            <a href="{{ route('2fa.settings', $currentTeam) }}"
+               class="flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all font-bold text-sm {{ str_starts_with($routeName, '2fa') ? 'bg-emerald-500 text-slate-950' : 'text-slate-400 hover:bg-white/5 hover:text-white' }}">
+                <span class="text-lg">🔐</span> Keamanan 2FA
+            </a>
         </nav>
 
-        <div class="p-4 border-t border-gray-800">
+        <div class="p-6 border-t border-white/5">
             <button onclick="openLogoutModal()"
-                    class="w-full bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">
-                Logout
+                    class="w-full flex items-center justify-center gap-2 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white px-4 py-3.5 rounded-2xl transition-all font-black text-xs uppercase tracking-widest group">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-1 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+                Keluar Sistem
             </button>
         </div>
     </aside>
 
-    {{-- Main --}}
-    <main class="flex-1 flex flex-col">
-        <header class="bg-white border-b px-6 py-4 flex justify-between items-center">
+    {{-- Main Content --}}
+    <main class="flex-1 flex flex-col h-screen overflow-y-auto">
+        <header class="bg-white/80 backdrop-blur-md border-b border-slate-200 px-8 py-5 flex justify-between items-center sticky top-0 z-30">
             <div>
-                <h2 class="text-xl font-bold">@yield('page_heading', 'Dashboard')</h2>
-                <p class="text-sm text-gray-500">Halo, {{ auth()->user()->name }}</p>
+                <h2 class="text-2xl font-black text-slate-900 tracking-tight">@yield('page_heading', 'Dashboard')</h2>
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Admin: {{ auth()->user()->name }}</p>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <div class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center font-black">
+                    {{ substr(auth()->user()->name, 0, 1) }}
+                </div>
             </div>
         </header>
 
-        <section class="p-6 flex-1">
+        <section class="p-8">
             @yield('content')
 
-            <div class="text-center text-xs text-gray-400 mt-10">
-                © {{ date('Y') }} {{ config('app.name') }}
-            </div>
+            <footer class="mt-12 py-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">© {{ date('Y') }} GOALSPACE PLATFORM</p>
+                <div class="flex gap-6 text-[10px] font-black text-slate-300 uppercase tracking-widest">
+                    <a href="#" class="hover:text-emerald-500">Bantuan</a>
+                    <a href="#" class="hover:text-emerald-500">Kebijakan</a>
+                    <a href="#" class="hover:text-emerald-500">Log</a>
+                </div>
+            </footer>
         </section>
     </main>
 </div>
 
-{{-- Toast --}}
-<div id="toast" class="fixed top-5 right-5 hidden bg-green-600 text-white px-4 py-2 rounded shadow"></div>
+{{-- Toast & Modals --}}
+<div id="toast" class="fixed bottom-8 right-8 hidden bg-slate-900 text-white px-6 py-4 rounded-2xl shadow-2xl z-[100] border border-slate-800 animate-bounce"></div>
 
 @stack('scripts')
 
 <script>
 function showToast(msg) {
     let t = document.getElementById('toast');
-    t.innerText = msg;
+    t.innerText = "✨ " + msg;
     t.classList.remove('hidden');
-    setTimeout(() => t.classList.add('hidden'), 2000);
+    setTimeout(() => t.classList.add('hidden'), 3000);
 }
 </script>
 
 @if(session('success'))
-<script>
-    showToast("{{ session('success') }}");
-</script>
+<script>showToast("{{ session('success') }}");</script>
 @endif
 
-{{-- Modal hapus global --}}
-<div id="globalDeleteModal"
-     class="fixed inset-0 hidden items-center justify-center bg-black/40 z-50">
-    <div class="bg-white w-[90%] max-w-sm rounded-2xl shadow-xl p-6 text-center">
-        <h2 class="text-lg font-semibold text-gray-800 mb-2">Konfirmasi Hapus</h2>
-        <p class="text-sm text-gray-600 mb-5">Yakin ingin menghapus data ini?</p>
+{{-- Logout Modal --}}
+<div id="logoutModal" class="fixed inset-0 hidden items-center justify-center bg-slate-950/60 backdrop-blur-sm z-[100]">
+    <div class="bg-white rounded-[2.5rem] shadow-2xl p-10 w-[400px] text-center border border-slate-100">
+        <div class="w-20 h-20 bg-red-50 text-red-500 rounded-3xl flex items-center justify-center text-3xl mx-auto mb-6">👋</div>
+        <h2 class="text-2xl font-black text-slate-900 mb-2 tracking-tight">Sudah Selesai?</h2>
+        <p class="text-slate-500 mb-8 font-medium">Pastikan semua laporan hari ini sudah tersimpan dengan benar.</p>
 
-        <div class="flex justify-center gap-3">
-            <button type="button"
-                    id="cancelDeleteBtn"
-                    class="px-4 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300">
-                Batal
-            </button>
-
-            <button type="button"
-                    id="confirmDeleteBtn"
-                    class="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700">
-                Hapus
-            </button>
-        </div>
-    </div>
-</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const modal = document.getElementById('globalDeleteModal');
-    const confirmBtn = document.getElementById('confirmDeleteBtn');
-    const cancelBtn = document.getElementById('cancelDeleteBtn');
-
-    let targetForm = null;
-
-    function openGlobalDeleteModal(form) {
-        targetForm = form;
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-    }
-
-    function closeGlobalDeleteModal() {
-        targetForm = null;
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-    }
-
-    document.addEventListener('submit', function (e) {
-        const form = e.target;
-
-        if (!(form instanceof HTMLFormElement)) return;
-
-        const methodInput = form.querySelector('input[name="_method"]');
-        const isDeleteForm = methodInput && methodInput.value.toUpperCase() === 'DELETE';
-
-        if (isDeleteForm && !form.dataset.confirmed) {
-            e.preventDefault();
-            openGlobalDeleteModal(form);
-        }
-    });
-
-    confirmBtn.addEventListener('click', function () {
-        if (targetForm) {
-            targetForm.dataset.confirmed = 'true';
-            targetForm.submit();
-        }
-        closeGlobalDeleteModal();
-    });
-
-    cancelBtn.addEventListener('click', closeGlobalDeleteModal);
-
-    modal.addEventListener('click', function (e) {
-        if (e.target === modal) {
-            closeGlobalDeleteModal();
-        }
-    });
-
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-            closeGlobalDeleteModal();
-        }
-    });
-});
-</script>
-
-{{-- Modal logout --}}
-<div id="logoutModal"
-     class="fixed inset-0 hidden items-center justify-center bg-black/40 z-50">
-    <div class="bg-white rounded-xl shadow-lg p-6 w-80 text-center">
-        <h2 class="text-lg font-semibold mb-3">Logout</h2>
-        <p class="text-gray-600 mb-5">Yakin ingin keluar?</p>
-
-        <div class="flex justify-center gap-3">
-            <button onclick="closeLogoutModal()"
-                    class="bg-gray-300 px-4 py-2 rounded-lg">
-                Batal
-            </button>
-
+        <div class="grid grid-cols-2 gap-4">
+            <button onclick="closeLogoutModal()" class="bg-slate-100 text-slate-600 font-black py-4 rounded-2xl hover:bg-slate-200 transition">Batal</button>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button class="bg-red-600 text-white px-4 py-2 rounded-lg">
-                    Logout
-                </button>
+                <button class="w-full bg-red-600 text-white font-black py-4 rounded-2xl hover:bg-red-700 shadow-lg shadow-red-600/20 transition">Ya, Keluar</button>
             </form>
         </div>
     </div>
 </div>
 
 <script>
-function openLogoutModal() {
-    document.getElementById('logoutModal').classList.remove('hidden');
-    document.getElementById('logoutModal').classList.add('flex');
-}
-
-function closeLogoutModal() {
-    document.getElementById('logoutModal').classList.add('hidden');
-    document.getElementById('logoutModal').classList.remove('flex');
-}
+function openLogoutModal() { document.getElementById('logoutModal').classList.remove('hidden'); document.getElementById('logoutModal').classList.add('flex'); }
+function closeLogoutModal() { document.getElementById('logoutModal').classList.add('hidden'); document.getElementById('logoutModal').classList.remove('flex'); }
 </script>
+
 </body>
 </html>
