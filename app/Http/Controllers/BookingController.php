@@ -79,17 +79,19 @@ public function adminIndex(Request $request, $current_team)
     'bukti_pembayaran.required' => 'Bukti pembayaran wajib diupload.',
 ];
 
-$validated = $request->validate([
-    'lapangan_id' => 'required|exists:lapangans,id',
-    'nama_pemesan' => 'required|string|max:255',
-    'tanggal' => 'required|date',
-    'jam_mulai' => 'required',
-    'jam_selesai' => 'required|after:jam_mulai',
-    'status' => 'required|in:pending,lunas,selesai,batal',
-    'metode_pembayaran' => 'required|in:Transfer Bank,QRIS,Tunai',
-    'catatan_pembayaran' => 'nullable|string',
-    'bukti_pembayaran' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
-], $messages);
+        $validated = $request->validate([
+            'lapangan_id' => 'required|exists:lapangans,id',
+            'nama_pemesan' => 'required|string|max:255',
+            'tanggal' => 'required|date',
+            'jam_mulai' => 'required',
+            'jam_selesai' => 'required|after:jam_mulai',
+            'metode_pembayaran' => 'required|in:Transfer Bank,QRIS,Tunai',
+            'catatan_pembayaran' => 'nullable|string',
+            'bukti_pembayaran' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+        ], $messages);
+
+        // Jika status tidak dikirim (oleh user), default ke 'pending'
+        $validated['status'] = $request->status ?? 'pending';
 
         $bentrok = Booking::where('lapangan_id', $validated['lapangan_id'])
             ->where('tanggal', $validated['tanggal'])
