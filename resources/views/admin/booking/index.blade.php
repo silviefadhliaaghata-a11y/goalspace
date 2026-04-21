@@ -33,8 +33,8 @@
 </div>
 
 <div class="glass-card rounded-[2.5rem] overflow-hidden border-white/5 shadow-2xl">
-    <div class="overflow-x-auto">
-        <table class="w-full">
+    <div class="overflow-x-auto overflow-y-hidden">
+        <table class="w-full min-w-[1000px]">
             <thead>
                 <tr class="bg-white/5 text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] border-b border-white/5">
                     <th class="px-8 py-6 text-left">Pelanggan</th>

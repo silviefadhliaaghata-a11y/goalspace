@@ -33,16 +33,28 @@
 </head>
 <body class="text-slate-200 min-h-screen antialiased flex overflow-hidden">
 
+    <!-- MOBILE HEADER (Hanya muncul di HP) -->
+    <div class="lg:hidden fixed top-0 left-0 right-0 h-16 bg-slate-900/80 backdrop-blur-xl border-b border-white/5 z-[60] flex items-center justify-between px-6">
+        <div class="flex items-center gap-2">
+            <span class="text-2xl">⚽</span>
+            <span class="text-lg font-black tracking-tighter text-white uppercase italic">GOAL<span class="text-emerald-500">ADMIN</span></span>
+        </div>
+        <button onclick="toggleMobileSidebar()" class="w-10 h-10 bg-emerald-500/10 text-emerald-500 rounded-xl flex items-center justify-center border border-emerald-500/20">
+            <span id="menuIcon">☰</span>
+        </button>
+    </div>
+
     <!-- SIDEBAR -->
-    <aside class="w-72 glass-sidebar hidden lg:flex flex-col h-screen sticky top-0">
-        <div class="p-8">
+    <aside id="adminSidebar" class="w-72 glass-sidebar fixed lg:sticky top-0 left-0 h-screen z-[70] flex flex-col transition-transform duration-300 -translate-x-full lg:translate-x-0">
+        <div class="p-8 flex items-center justify-between">
             <a href="#" class="flex items-center gap-3 group">
                 <span class="text-3xl transition-transform group-hover:scale-110 duration-300">⚽</span>
                 <span class="text-2xl font-black tracking-tighter text-white uppercase italic">GOAL<span class="text-emerald-500">ADMIN</span></span>
             </a>
+            <button onclick="toggleMobileSidebar()" class="lg:hidden text-slate-400">✕</button>
         </div>
 
-        <nav class="flex-1 px-4 space-y-1">
+        <nav class="flex-1 px-4 space-y-1 overflow-y-auto">
             <p class="px-4 text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] mb-4 italic">Management</p>
             
             <a href="{{ route('admin.dashboard', $current_team) }}" 
@@ -90,30 +102,18 @@
                 🔒 Keamanan 2FA
             </a>
 
-            <div class="pt-8 px-4">
+            <div class="pt-8 px-4 pb-10">
                 <button onclick="openLogoutModal()" class="w-full bg-red-600 text-white font-black py-4 rounded-2xl hover:bg-red-700 shadow-lg shadow-red-600/20 transition uppercase tracking-widest text-xs">
                     Logout
                 </button>
             </div>
         </nav>
-
-        <div class="p-6">
-            <div class="glass-card rounded-2xl p-4 flex items-center gap-3">
-                <div class="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center font-black text-slate-900">
-                    {{ substr(auth()->user()->name, 0, 1) }}
-                </div>
-                <div class="overflow-hidden text-ellipsis whitespace-nowrap">
-                    <p class="text-xs font-black text-white leading-none">{{ auth()->user()->name }}</p>
-                    <p class="text-[10px] font-bold text-emerald-500 uppercase mt-1 tracking-tighter">Super Admin</p>
-                </div>
-            </div>
-        </div>
     </aside>
 
     <!-- MAIN CONTENT -->
-    <main class="flex-1 flex flex-col h-screen overflow-y-auto">
-        <!-- HEADER -->
-        <header class="h-20 flex items-center justify-between px-8 bg-black/20 backdrop-blur-sm sticky top-0 z-40 border-b border-white/5">
+    <main class="flex-1 flex flex-col h-screen overflow-y-auto pt-16 lg:pt-0">
+        <!-- HEADER (Desktop) -->
+        <header class="hidden lg:flex h-20 items-center justify-between px-8 bg-black/20 backdrop-blur-sm sticky top-0 z-40 border-b border-white/5">
             <div class="flex items-center gap-4">
                 <h1 class="text-xl font-black text-white tracking-tight uppercase tracking-widest">@yield('page_heading', 'Overview')</h1>
             </div>
@@ -170,6 +170,19 @@
 
     @stack('scripts')
     <script>
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('adminSidebar');
+            const icon = document.getElementById('menuIcon');
+            
+            if (sidebar.classList.contains('-translate-x-full')) {
+                sidebar.classList.remove('-translate-x-full');
+                icon.innerText = '✕';
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                icon.innerText = '☰';
+            }
+        }
+
         function openLogoutModal() { 
             const m = document.getElementById('logoutModal');
             m.classList.remove('hidden'); 
