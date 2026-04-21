@@ -5,68 +5,78 @@
 
 @section('content')
     <!-- STATS GRID -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-        <div class="glass-card rounded-[2.5rem] p-8 group hover:border-emerald-500 transition-all duration-500 relative overflow-hidden">
-            <div class="absolute -right-4 -top-4 w-24 h-24 bg-emerald-500/5 rounded-full blur-2xl group-hover:bg-emerald-500/20 transition-all duration-500"></div>
-            <p class="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] mb-4">Total Pelanggan</p>
-            <div class="flex items-end gap-3">
-                <h3 class="text-5xl font-black text-white tracking-tighter">{{ $totalUser }}</h3>
-                <span class="text-xs font-bold text-emerald-400 mb-2 uppercase">Aktif</span>
+    <!-- STATS GRID -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
+        {{-- Total Pelanggan --}}
+        <div class="glass-card rounded-[2rem] p-6 group hover:border-emerald-500 transition-all duration-500 relative overflow-hidden">
+            <div class="absolute -right-2 -top-2 w-16 h-16 bg-emerald-500/10 rounded-full blur-xl group-hover:bg-emerald-500/30 transition-all"></div>
+            <div class="relative z-10">
+                <p class="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3">User</p>
+                <div class="flex items-center gap-2">
+                    <h3 class="text-3xl md:text-5xl font-black text-white tracking-tighter">{{ $totalUser }}</h3>
+                    <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                </div>
             </div>
         </div>
 
-        <div class="glass-card rounded-[2.5rem] p-8 group hover:border-blue-500 transition-all duration-500 relative overflow-hidden">
-            <div class="absolute -right-4 -top-4 w-24 h-24 bg-blue-500/5 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all duration-500"></div>
-            <p class="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] mb-4">Total Lapangan</p>
-            <div class="flex items-end gap-3">
-                <h3 class="text-5xl font-black text-white tracking-tighter">{{ $totalLapangan }}</h3>
-                <span class="text-xs font-bold text-blue-400 mb-2 uppercase">Unit</span>
+        {{-- Total Lapangan --}}
+        <div class="glass-card rounded-[2rem] p-6 group hover:border-blue-500 transition-all duration-500 relative overflow-hidden">
+            <div class="absolute -right-2 -top-2 w-16 h-16 bg-blue-500/10 rounded-full blur-xl group-hover:bg-blue-500/30 transition-all"></div>
+            <div class="relative z-10">
+                <p class="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3">Arena</p>
+                <div class="flex items-center gap-2">
+                    <h3 class="text-3xl md:text-5xl font-black text-white tracking-tighter">{{ $totalLapangan }}</h3>
+                    <span class="text-[10px] font-bold text-blue-400 uppercase tracking-tighter">Unit</span>
+                </div>
             </div>
         </div>
 
-        <div class="glass-card rounded-[2.5rem] p-8 group hover:border-orange-500 transition-all duration-500 relative overflow-hidden">
-            <div class="absolute -right-4 -top-4 w-24 h-24 bg-orange-500/5 rounded-full blur-2xl group-hover:bg-orange-500/20 transition-all duration-500"></div>
-            <p class="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] mb-4">Total Booking</p>
-            <div class="flex items-end gap-3">
-                <h3 class="text-5xl font-black text-white tracking-tighter">{{ $totalBooking }}</h3>
-                <span class="text-xs font-bold text-orange-400 mb-2 uppercase">Sesi</span>
+        {{-- Total Booking --}}
+        <div class="glass-card rounded-[2rem] p-6 group hover:border-orange-500 transition-all duration-500 relative overflow-hidden">
+            <div class="absolute -right-2 -top-2 w-16 h-16 bg-orange-500/10 rounded-full blur-xl group-hover:bg-orange-500/30 transition-all"></div>
+            <div class="relative z-10">
+                <p class="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3">Booking</p>
+                <div class="flex items-center gap-2">
+                    <h3 class="text-3xl md:text-5xl font-black text-white tracking-tighter">{{ $totalBooking }}</h3>
+                    <span class="text-[10px] font-bold text-orange-400 uppercase tracking-tighter">Sesi</span>
+                </div>
             </div>
         </div>
 
-        <div class="glass-card rounded-[2.5rem] p-8 group hover:border-emerald-400 transition-all duration-500 relative overflow-hidden">
-            <div class="absolute -right-4 -top-4 w-24 h-24 bg-emerald-400/5 rounded-full blur-2xl group-hover:bg-emerald-400/20 transition-all duration-500"></div>
-            <p class="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] mb-4">Total Pendapatan</p>
-            <div class="flex flex-col">
-                <span class="text-[10px] font-bold text-emerald-400 uppercase mb-1">Bulan Ini</span>
-                <h3 class="text-2xl font-black text-white tracking-tight italic">Rp{{ number_format($totalPendapatan, 0, ',', '.') }}</h3>
+        {{-- Total Pendapatan --}}
+        <div class="glass-card rounded-[2rem] p-6 group hover:border-emerald-400 transition-all duration-500 relative overflow-hidden">
+            <div class="absolute -right-2 -top-2 w-16 h-16 bg-emerald-400/10 rounded-full blur-xl group-hover:bg-emerald-400/30 transition-all"></div>
+            <div class="relative z-10">
+                <p class="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3 italic">Income</p>
+                <h3 class="text-xl md:text-2xl font-black text-white tracking-tight italic">Rp{{ number_format($totalPendapatan, 0, ',', '.') }}</h3>
             </div>
         </div>
     </div>
 
     <!-- DAILY MONITOR -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
-        <div class="glass-card rounded-[3rem] p-10 relative overflow-hidden group">
-            <div class="absolute right-0 top-0 p-10 text-8xl opacity-[0.03] group-hover:opacity-10 transition-opacity duration-700">⚽</div>
-            <h4 class="text-[10px] font-black text-emerald-500 uppercase tracking-[0.4em] mb-6">Booking Hari Ini</h4>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div class="glass-card rounded-[2.5rem] p-8 relative overflow-hidden group">
+            <div class="absolute right-0 top-0 p-8 text-6xl opacity-[0.05] group-hover:opacity-20 transition-opacity">⚽</div>
+            <h4 class="text-[10px] font-black text-emerald-500 uppercase tracking-[0.4em] mb-4">Hari Ini</h4>
             <div class="flex items-center gap-6">
-                <div class="text-7xl font-black text-white tracking-tighter italic">{{ $bookingHariIni }}</div>
-                <div class="h-16 w-[1px] bg-white/10"></div>
+                <div class="text-6xl font-black text-white tracking-tighter italic">{{ $bookingHariIni }}</div>
+                <div class="h-12 w-[1px] bg-white/10"></div>
                 <div>
-                    <p class="text-sm font-bold text-slate-400">Pertandingan terjadwal</p>
-                    <p class="text-xs text-slate-500 mt-1 uppercase tracking-widest font-black">Ready to play</p>
+                    <p class="text-xs font-bold text-slate-400">Booking Aktif</p>
+                    <p class="text-[10px] text-slate-500 mt-1 uppercase font-black italic">Ready to play</p>
                 </div>
             </div>
         </div>
 
-        <div class="glass-card rounded-[3rem] p-10 relative overflow-hidden group">
-            <div class="absolute right-0 top-0 p-10 text-8xl opacity-[0.03] group-hover:opacity-10 transition-opacity duration-700">⏳</div>
-            <h4 class="text-[10px] font-black text-orange-500 uppercase tracking-[0.4em] mb-6">Menunggu Validasi</h4>
+        <div class="glass-card rounded-[2.5rem] p-8 relative overflow-hidden group">
+            <div class="absolute right-0 top-0 p-8 text-6xl opacity-[0.05] group-hover:opacity-20 transition-opacity">⏳</div>
+            <h4 class="text-[10px] font-black text-orange-500 uppercase tracking-[0.4em] mb-4">Pending</h4>
             <div class="flex items-center gap-6">
-                <div class="text-7xl font-black text-white tracking-tighter italic">{{ $bookingPending }}</div>
-                <div class="h-16 w-[1px] bg-white/10"></div>
+                <div class="text-6xl font-black text-white tracking-tighter italic">{{ $bookingPending }}</div>
+                <div class="h-12 w-[1px] bg-white/10"></div>
                 <div>
-                    <p class="text-sm font-bold text-slate-400">Pemesanan perlu dicek</p>
-                    <p class="text-xs text-slate-500 mt-1 uppercase tracking-widest font-black italic">Action required</p>
+                    <p class="text-xs font-bold text-slate-400">Perlu Validasi</p>
+                    <p class="text-[10px] text-slate-500 mt-1 uppercase font-black italic text-orange-500/50">Action required</p>
                 </div>
             </div>
         </div>

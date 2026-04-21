@@ -34,13 +34,16 @@
 <body class="text-slate-200 min-h-screen antialiased flex overflow-hidden">
 
     <!-- MOBILE HEADER (Hanya muncul di HP) -->
-    <div class="lg:hidden fixed top-0 left-0 right-0 h-16 bg-slate-900/80 backdrop-blur-xl border-b border-white/5 z-[60] flex items-center justify-between px-6">
-        <div class="flex items-center gap-2">
-            <span class="text-2xl">⚽</span>
-            <span class="text-lg font-black tracking-tighter text-white uppercase italic">GOAL<span class="text-emerald-500">ADMIN</span></span>
+    <div class="lg:hidden fixed top-0 left-0 right-0 h-20 bg-slate-900/60 backdrop-blur-xl border-b border-white/5 z-[60] flex items-center justify-between px-6">
+        <div class="flex flex-col">
+            <span class="text-[10px] font-black text-emerald-500 uppercase tracking-[0.3em] italic mb-0.5">Administrator</span>
+            <div class="flex items-center gap-2">
+                <span class="text-xl">⚽</span>
+                <span class="text-lg font-black tracking-tighter text-white uppercase italic">GOAL<span class="text-emerald-500">ADMIN</span></span>
+            </div>
         </div>
-        <button onclick="toggleMobileSidebar()" class="w-10 h-10 bg-emerald-500/10 text-emerald-500 rounded-xl flex items-center justify-center border border-emerald-500/20">
-            <span id="menuIcon">☰</span>
+        <button onclick="toggleMobileSidebar()" class="w-12 h-12 bg-white/5 text-white rounded-2xl flex items-center justify-center border border-white/10 active:scale-95 transition-transform">
+            <span id="menuIcon" class="text-xl">☰</span>
         </button>
     </div>
 
@@ -111,7 +114,7 @@
     </aside>
 
     <!-- MAIN CONTENT -->
-    <main class="flex-1 flex flex-col h-screen overflow-y-auto pt-16 lg:pt-0">
+    <main class="flex-1 flex flex-col h-screen overflow-y-auto pt-20 lg:pt-0">
         <!-- HEADER (Desktop) -->
         <header class="hidden lg:flex h-20 items-center justify-between px-8 bg-black/20 backdrop-blur-sm sticky top-0 z-40 border-b border-white/5">
             <div class="flex items-center gap-4">
