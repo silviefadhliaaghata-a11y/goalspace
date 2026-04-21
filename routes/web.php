@@ -269,3 +269,11 @@ Route::get('/user/confirm-password', function () {
 });
 
 require __DIR__ . '/settings.php';
+
+Route::get('/clean-all', function() {
+    Artisan::call('config:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    Artisan::call('route:clear');
+    return "Semua Cache BERHASIL dibersihkan! Silakan coba upload lagi.";
+});

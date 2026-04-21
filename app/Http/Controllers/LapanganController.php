@@ -52,7 +52,16 @@ class LapanganController extends Controller
         ]);
 
         if ($request->hasFile('gambar')) {
-            $validated['gambar'] = $request->file('gambar')->store('lapangan', 'public');
+            $file = $request->file('gambar');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $targetFolder = (file_exists(base_path('public_html')) ? base_path('public_html/uploads/lapangan') : public_path('uploads/lapangan'));
+            
+            if (!file_exists($targetFolder)) {
+                mkdir($targetFolder, 0777, true);
+            }
+            
+            $file->move($targetFolder, $filename);
+            $validated['gambar'] = 'lapangan/' . $filename;
         }
 
         Lapangan::create($validated);
@@ -82,11 +91,20 @@ class LapanganController extends Controller
         ]);
 
         if ($request->hasFile('gambar')) {
-            if ($lapangan->gambar && Storage::disk('public')->exists($lapangan->gambar)) {
-                Storage::disk('public')->delete($lapangan->gambar);
+            $file = $request->file('gambar');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            
+            // Tentukan folder tujuan (public/uploads/lapangan)
+            $targetFolder = (file_exists(base_path('public_html')) ? base_path('public_html/uploads/lapangan') : public_path('uploads/lapangan'));
+            
+            // Pastikan folder ada
+            if (!file_exists($targetFolder)) {
+                mkdir($targetFolder, 0777, true);
             }
-
-            $validated['gambar'] = $request->file('gambar')->store('lapangan', 'public');
+            
+            // Pindahkan file secara brutal/langsung
+            $file->move($targetFolder, $filename);
+            $validated['gambar'] = 'lapangan/' . $filename;
         }
 
         $lapangan->update($validated);

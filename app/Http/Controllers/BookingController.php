@@ -116,22 +116,25 @@ public function adminIndex(Request $request, $current_team)
         $validated['total_harga'] = (int) round($durasiJam * $lapangan->harga);
 
         if ($request->hasFile('bukti_pembayaran')) {
-            $validated['bukti_pembayaran'] = $request->file('bukti_pembayaran')
-                ->store('bukti-pembayaran', 'public');
+            $file = $request->file('bukti_pembayaran');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $targetFolder = (file_exists(base_path('public_html')) ? base_path('public_html/uploads/bukti-pembayaran') : public_path('uploads/bukti-pembayaran'));
+            
+            if (!file_exists($targetFolder)) {
+                mkdir($targetFolder, 0777, true);
+            }
+            
+            $file->move($targetFolder, $filename);
+            $validated['bukti_pembayaran'] = 'bukti-pembayaran/' . $filename;
         }
 
-        if ($request->hasFile('bukti_pembayaran')) {
-    $validated['bukti_pembayaran'] = $request->file('bukti_pembayaran')
-        ->store('bukti-pembayaran', 'public');
-}
-
-$validated['kode_booking'] = 'BOOK-' . now()->format('YmdHis') . '-' . strtoupper(Str::random(4));
+        $validated['kode_booking'] = 'BOOK-' . now()->format('YmdHis') . '-' . strtoupper(Str::random(4));
 
         $booking = Booking::create($validated);
 
         return redirect()
-    ->route('user.booking.index', $current_team)
-    ->with('success', 'Booking berhasil ditambahkan.');
+            ->route('user.booking.index', $current_team)
+            ->with('success', 'Booking berhasil ditambahkan.');
     }
 
     public function edit($current_team, Booking $booking)
