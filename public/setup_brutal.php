@@ -1,29 +1,33 @@
 <?php
-// Script Setup Jalur Brutal (Deteksi Otomatis public_html)
+// Script Perbaikan Izin & Setup Uploads
 $base = dirname(__DIR__);
 $publicFolder = file_exists($base . '/public_html') ? $base . '/public_html' : $base . '/public';
 $path = $publicFolder . '/uploads';
 
 echo "Deteksi folder publik: " . $publicFolder . "<br>";
 
+// Set izin folder publik ke 0755 agar bisa diakses sistem
+chmod($publicFolder, 0755);
+echo "Izin folder publik diatur ke 0755.<br>";
+
 if (!file_exists($path)) {
-    if (mkdir($path, 0755, true)) {
-        echo "Folder 'uploads' BERHASIL dibuat.<br>";
-    } else {
-        echo "GAGAL membuat folder uploads. Cek permission.<br>";
-    }
+    mkdir($path, 0777, true);
+    echo "Folder 'uploads' dibuat.<br>";
 } else {
-    echo "Folder 'uploads' sudah ada.<br>";
+    chmod($path, 0777);
+    echo "Izin folder 'uploads' diatur ke 0777.<br>";
 }
 
 $subfolders = ['lapangan', 'bukti-pembayaran'];
 foreach ($subfolders as $sub) {
-    if (!file_exists($path . '/' . $sub)) {
-        mkdir($path . '/' . $sub, 0755, true);
-        echo "Subfolder '$sub' BERHASIL dibuat.<br>";
+    $subPath = $path . '/' . $sub;
+    if (!file_exists($subPath)) {
+        mkdir($subPath, 0777, true);
+        echo "Subfolder '$sub' dibuat.<br>";
     } else {
-        echo "Subfolder '$sub' sudah ada.<br>";
+        chmod($subPath, 0777);
+        echo "Izin subfolder '$sub' diatur ke 0777.<br>";
     }
 }
 
-echo "<br><b>Setup Selesai! Silakan coba upload foto lapangan lagi.</b>";
+echo "<br><b>Selesai! Sekarang silakan coba upload foto lapangan lagi.</b>";
