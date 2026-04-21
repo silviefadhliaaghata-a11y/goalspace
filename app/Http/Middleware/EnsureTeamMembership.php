@@ -41,8 +41,12 @@ class EnsureTeamMembership
 
         // Cek keanggotaan tim untuk user biasa
         if (! $user->belongsToTeam($team)) {
-            // Jika dia pemilik tim tapi tidak terdaftar di pivot, kita coba izinkan jika ID tim cocok dengan current_team_id
-            if ($user->current_team_id !== $team->id) {
+            // AUTO-REPAIR: Jika ID tim cocok dengan current_team_id user, anggap dia pemilik dan daftarkan ke pivot
+            if ($user->current_team_id === $team->id) {
+                $user->teams()->attach($team->id, [
+                    'role' => \App\Enums\TeamRole::Owner->value,
+                ]);
+            } else {
                 abort(403, 'Anda bukan anggota tim ini.');
             }
         }
