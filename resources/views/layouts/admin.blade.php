@@ -42,9 +42,16 @@
                 <span class="text-lg font-black tracking-tighter text-white uppercase italic">GOAL<span class="text-emerald-500">ADMIN</span></span>
             </div>
         </div>
-        <button onclick="toggleMobileSidebar()" class="w-12 h-12 bg-white/5 text-white rounded-2xl flex items-center justify-center border border-white/10 active:scale-95 transition-transform">
-            <span id="menuIcon" class="text-xl">☰</span>
-        </button>
+        <div class="flex items-center gap-3">
+            <button onclick="openLogoutModal()" class="w-12 h-12 bg-red-500/10 text-red-500 rounded-2xl flex items-center justify-center border border-red-500/20 active:scale-90 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+            </button>
+            <button onclick="toggleMobileSidebar()" class="w-12 h-12 bg-white/5 text-white rounded-2xl flex items-center justify-center border border-white/10 active:scale-95 transition-transform">
+                <span id="menuIcon" class="text-xl">☰</span>
+            </button>
+        </div>
     </div>
 
     <!-- SIDEBAR -->
