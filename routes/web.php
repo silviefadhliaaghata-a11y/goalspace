@@ -269,3 +269,11 @@ Route::get('/user/confirm-password', function () {
 });
 
 require __DIR__ . '/settings.php';
+Route::get('/fix-storage', function() {
+    try {
+        Artisan::call('storage:link');
+        return "Storage link successfully created!";
+    } catch (\Exception $e) {
+        return $e->getMessage();
+    }
+});
