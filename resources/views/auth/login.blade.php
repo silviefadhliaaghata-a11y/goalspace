@@ -8,94 +8,95 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .glass {
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(12px);
+        .glass-card {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .bg-soccer {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
         }
     </style>
 </head>
-<body class="bg-slate-950 min-h-screen flex items-center justify-center p-6 relative overflow-hidden">
-    <!-- Dekorasi Background -->
-    <div class="absolute top-0 -left-20 w-96 h-96 bg-emerald-500/20 rounded-full blur-[120px]"></div>
-    <div class="absolute bottom-0 -right-20 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]"></div>
-
-    <div class="w-full max-w-[440px] relative z-10">
-        <!-- Logo & Header -->
-        <div class="text-center mb-10">
-            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-tr from-emerald-400 to-emerald-600 mb-4 shadow-lg shadow-emerald-500/20">
-                <span class="text-3xl text-white">⚽</span>
+<body class="bg-soccer min-h-screen flex items-center justify-center p-4">
+    
+    <div class="w-full max-w-[440px] relative">
+        <!-- Logo Branding -->
+        <div class="flex justify-center mb-6">
+            <div class="flex items-center gap-2">
+                <span class="text-4xl">⚽</span>
+                <span class="text-3xl font-extrabold text-white tracking-tighter text-center leading-none">GOAL<br><span class="text-emerald-400">SPACE</span></span>
             </div>
-            <h1 class="text-4xl font-extrabold text-white tracking-tight">Goal<span class="text-emerald-400">Space</span></h1>
-            <p class="text-slate-400 mt-2">Selamat datang kembali, siap cetak gol hari ini?</p>
         </div>
 
-        <div class="glass rounded-[32px] p-8 md:p-10 shadow-2xl">
-            <!-- Alert Status -->
-            @if (session('status'))
-                <div class="mb-6 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm">
-                    {{ session('status') }}
-                </div>
-            @endif
+        <!-- Form Card -->
+        <div class="glass-card rounded-[2.5rem] p-8 md:p-10 shadow-2xl overflow-hidden relative">
+            <!-- Glow Effect -->
+            <div class="absolute -top-24 -left-24 w-48 h-48 bg-emerald-500/20 rounded-full blur-[60px]"></div>
 
-            <!-- Error List -->
+            <div class="relative z-10 text-center mb-8">
+                <h2 class="text-2xl font-bold text-white">Selamat Datang</h2>
+                <p class="text-gray-400 text-sm mt-1">Masuk untuk mulai booking lapangan</p>
+            </div>
+
             @if ($errors->any())
-                <div class="mb-6 p-4 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm italic">
+                <div class="mb-6 p-4 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-400 text-xs italic">
                     {{ $errors->first() }}
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('login') }}" class="space-y-5">
+            <form method="POST" action="{{ route('login') }}" class="space-y-4">
                 @csrf
                 
-                <div>
-                    <label class="block text-sm font-semibold text-slate-300 mb-2 ml-1">Email</label>
+                <div class="space-y-1.5">
+                    <label class="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">Email</label>
                     <input type="email" name="email" value="{{ old('email') }}" required autofocus
-                        class="w-full bg-slate-900/50 border border-slate-700 text-white rounded-2xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all duration-300 placeholder:text-slate-600"
-                        placeholder="nama@email.com">
+                        class="w-full bg-white/5 border border-white/10 text-white rounded-2xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:bg-white/10 transition-all duration-300 placeholder:text-gray-600"
+                        placeholder="email@anda.com">
                 </div>
 
-                <div>
-                    <div class="flex justify-between mb-2 ml-1">
-                        <label class="text-sm font-semibold text-slate-300">Password</label>
+                <div class="space-y-1.5">
+                    <div class="flex justify-between items-center px-1">
+                        <label class="text-xs font-bold text-gray-400 uppercase tracking-widest">Password</label>
                         @if (Route::has('password.request'))
-                            <a href="{{ route('password.request') }}" class="text-xs font-semibold text-emerald-400 hover:text-emerald-300">Lupa?</a>
+                            <a href="{{ route('password.request') }}" class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Lupa?</a>
                         @endif
                     </div>
                     <input type="password" name="password" required
-                        class="w-full bg-slate-900/50 border border-slate-700 text-white rounded-2xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all duration-300 placeholder:text-slate-600"
+                        class="w-full bg-white/5 border border-white/10 text-white rounded-2xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:bg-white/10 transition-all duration-300 placeholder:text-gray-600"
                         placeholder="••••••••">
                 </div>
 
-                <div class="flex items-center px-1">
-                    <label class="flex items-center cursor-pointer group text-slate-400 text-sm">
-                        <input type="checkbox" name="remember" class="w-4 h-4 rounded border-slate-700 bg-slate-900 text-emerald-500 focus:ring-emerald-500/50 focus:ring-offset-slate-950">
-                        <span class="ml-3 group-hover:text-slate-200 transition-colors">Ingat saya</span>
+                <div class="flex items-center px-1 py-1">
+                    <label class="flex items-center cursor-pointer text-gray-400 text-xs">
+                        <input type="checkbox" name="remember" class="w-4 h-4 rounded border-white/10 bg-black/40 text-emerald-500 focus:ring-emerald-500/50">
+                        <span class="ml-3 font-medium">Biarkan saya tetap masuk</span>
                     </label>
                 </div>
 
                 <button type="submit"
-                    class="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-bold py-4 rounded-2xl shadow-lg shadow-emerald-500/25 transform transition active:scale-[0.98] duration-200">
-                    Masuk Sekarang
+                    class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-4 rounded-2xl shadow-xl shadow-emerald-500/20 transform transition active:scale-[0.97] duration-200 uppercase tracking-widest text-sm">
+                    GAS LOGIN! 🚀
                 </button>
 
                 <div class="relative py-2">
-                    <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-800"></div></div>
-                    <div class="relative flex justify-center text-xs"><span class="bg-slate-900/50 px-4 text-slate-500 uppercase tracking-widest font-bold">Atau</span></div>
+                    <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-white/10"></div></div>
+                    <div class="relative flex justify-center text-[10px]"><span class="bg-[#0f172a]/0 px-4 text-gray-500 uppercase tracking-[0.3em] font-bold">Atau</span></div>
                 </div>
 
-                <!-- Google Login Button -->
                 <a href="{{ route('google.login') }}"
-                   class="w-full flex items-center justify-center gap-3 bg-white hover:bg-slate-50 text-slate-900 font-bold py-4 rounded-2xl transition shadow-xl active:scale-[0.98] duration-200">
+                   class="w-full flex items-center justify-center gap-3 bg-white/10 hover:bg-white/20 border border-white/10 text-white font-bold py-4 rounded-2xl transition active:scale-[0.97]">
                     <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5" alt="Google">
-                    Login dengan Google
+                    <span class="text-sm">Masuk via Google</span>
                 </a>
             </form>
         </div>
 
-        <p class="text-center mt-8 text-slate-400">
+        <p class="text-center mt-8 text-gray-400 text-sm">
             Belum punya akun? 
-            <a href="{{ route('register') }}" class="text-emerald-400 font-bold hover:underline underline-offset-4 ml-1">Daftar Sekarang</a>
+            <a href="{{ route('register') }}" class="text-emerald-400 font-bold hover:text-emerald-300 ml-1 transition-colors">Daftar Sekarang</a>
         </p>
     </div>
 </body>
