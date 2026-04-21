@@ -55,8 +55,8 @@
     </div>
 
     <!-- SIDEBAR -->
-    <aside id="adminSidebar" class="w-72 glass-sidebar fixed lg:sticky top-0 left-0 h-screen z-[70] flex flex-col transition-transform duration-300 -translate-x-full lg:translate-x-0">
-        <div class="p-8 flex items-center justify-between">
+    <aside id="adminSidebar" class="w-72 glass-sidebar fixed lg:relative top-0 left-0 h-screen z-[70] flex flex-col transition-transform duration-300 -translate-x-full lg:translate-x-0 shrink-0">
+        <div class="p-8 flex items-center justify-between shrink-0">
             <a href="#" class="flex items-center gap-3 group">
                 <span class="text-3xl transition-transform group-hover:scale-110 duration-300">⚽</span>
                 <span class="text-2xl font-black tracking-tighter text-white uppercase italic">GOAL<span class="text-emerald-500">ADMIN</span></span>
@@ -113,7 +113,7 @@
             </a>
 
             <div class="pt-8 px-4 pb-10">
-                <button onclick="openLogoutModal()" class="w-full bg-red-600 text-white font-black py-4 rounded-2xl hover:bg-red-700 shadow-lg shadow-red-600/20 transition uppercase tracking-widest text-xs">
+                <button onclick="openLogoutModal()" class="w-full bg-red-600 text-white font-black py-4 rounded-2xl hover:bg-red-700 shadow-lg shadow-red-600/20 transition uppercase tracking-widest text-xs italic">
                     Logout
                 </button>
             </div>
@@ -121,7 +121,8 @@
     </aside>
 
     <!-- MAIN CONTENT -->
-    <main class="flex-1 flex flex-col h-screen overflow-y-auto pt-20 lg:pt-0">
+    <div class="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
+        <main class="flex-1 flex flex-col overflow-y-auto pt-20 lg:pt-0">
         <!-- HEADER (Desktop) -->
         <header class="hidden lg:flex h-20 items-center justify-between px-8 bg-black/20 backdrop-blur-sm sticky top-0 z-40 border-b border-white/5">
             <div class="flex items-center gap-4">
@@ -156,7 +157,8 @@
 
             @yield('content')
         </section>
-    </main>
+        </main>
+    </div>
 
     @stack('modals')
     @stack('scripts')
