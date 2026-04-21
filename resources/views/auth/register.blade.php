@@ -104,6 +104,13 @@
             Sudah punya akun? 
             <a href="{{ route('login') }}" class="text-emerald-400 font-bold hover:text-emerald-300 ml-1 transition-colors">Login di sini</a>
         </p>
+
+        <div class="mt-12 text-center">
+            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em]">
+                © {{ date('Y') }} GoalSpace | Coding by 
+                <a href="https://sekawanputrapratama.com" target="_blank" class="text-emerald-400 hover:text-emerald-300 transition">Sekawan Putra Pratama</a>
+            </p>
+        </div>
     </div>
 </body>
 </html>

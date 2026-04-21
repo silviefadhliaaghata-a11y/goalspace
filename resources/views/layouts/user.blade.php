@@ -68,5 +68,12 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         @yield('content')
     </main>
+
+    <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 border-t border-white/10 text-center">
+        <p class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em]">
+            © {{ date('Y') }} {{ config('app.name') }} | Coding by 
+            <a href="https://sekawanputrapratama.com" target="_blank" class="text-emerald-400 hover:text-emerald-300 transition">Sekawan Putra Pratama</a>
+        </p>
+    </footer>
 </body>
 </html>

@@ -113,12 +113,14 @@
         <section class="p-8">
             @yield('content')
 
-            <footer class="mt-12 py-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">© {{ date('Y') }} GOALSPACE PLATFORM</p>
-                <div class="flex gap-6 text-[10px] font-black text-slate-300 uppercase tracking-widest">
+            <footer class="mt-12 py-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">
+                    © {{ date('Y') }} {{ config('app.name') }} | Coding by 
+                    <a href="https://sekawanputrapratama.com" target="_blank" class="text-emerald-500 hover:text-emerald-400 transition">Sekawan Putra Pratama</a>
+                </p>
+                <div class="flex gap-6 text-[10px] font-black text-slate-600 uppercase tracking-widest">
                     <a href="#" class="hover:text-emerald-500">Bantuan</a>
                     <a href="#" class="hover:text-emerald-500">Kebijakan</a>
-                    <a href="#" class="hover:text-emerald-500">Log</a>
                 </div>
             </footer>
         </section>
