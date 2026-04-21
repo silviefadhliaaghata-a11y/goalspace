@@ -18,8 +18,18 @@ class EnsureTeamMembership
      */
     public function handle(Request $request, Closure $next, ?string $minimumRole = null): Response
     {
-        [$user, $team] = [$request->user(), $this->team($request)];
+        $user = $request->user();
+        $team = $this->team($request);
 
+        // Jika user adalah admin, izinkan akses ke tim mana pun
+        if ($user && $user->role === 'admin') {
+            if ($team && ! $user->isCurrentTeam($team)) {
+                $user->switchTeam($team);
+            }
+            return $next($request);
+        }
+
+        // Cek keanggotaan tim untuk user biasa
         abort_if(! $user || ! $team || ! $user->belongsToTeam($team), 403);
 
         $this->ensureTeamMemberHasRequiredRole($user, $team, $minimumRole);
