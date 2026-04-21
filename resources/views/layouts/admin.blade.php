@@ -113,15 +113,14 @@
         <section class="p-8">
             @yield('content')
 
-            <footer class="mt-12 py-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">
-                    © {{ date('Y') }} {{ config('app.name') }} | Coding by 
-                    <a href="https://sekawanputrapratama.com" target="_blank" class="text-emerald-500 hover:text-emerald-400 transition">Sekawan Putra Pratama</a>
+            <footer class="mt-12 py-10 border-t border-white/5 text-center">
+                <p class="text-xs text-slate-500 font-medium uppercase tracking-wider">
+                    © {{ date('Y') }} <span class="font-bold text-slate-300">GoalSpace</span>. All Rights Reserved.
                 </p>
-                <div class="flex gap-6 text-[10px] font-black text-slate-600 uppercase tracking-widest">
-                    <a href="#" class="hover:text-emerald-500">Bantuan</a>
-                    <a href="#" class="hover:text-emerald-500">Kebijakan</a>
-                </div>
+                <p class="text-[10px] mt-2 font-black tracking-[0.2em]">
+                    <span class="text-slate-600">PUBLISHED BY</span> 
+                    <a href="https://sekawanputrapratama.com" target="_blank" class="text-yellow-500 hover:text-blue-500 transition-colors">WWW.SEKAWANPUTRAPRATAMA.COM</a>
+                </p>
             </footer>
         </section>
     </main>

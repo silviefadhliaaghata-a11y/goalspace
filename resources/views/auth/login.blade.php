@@ -100,9 +100,12 @@
         </p>
 
         <div class="mt-12 text-center">
-            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em]">
-                © {{ date('Y') }} GoalSpace | Coding by 
-                <a href="https://sekawanputrapratama.com" target="_blank" class="text-emerald-400 hover:text-emerald-300 transition">Sekawan Putra Pratama</a>
+            <p class="text-[10px] text-gray-500 font-medium uppercase tracking-wider">
+                © {{ date('Y') }} <span class="font-bold text-white">GoalSpace</span>. All Rights Reserved.
+            </p>
+            <p class="text-[9px] mt-2 font-black tracking-[0.2em]">
+                <span class="text-gray-600">PUBLISHED BY</span> 
+                <a href="https://sekawanputrapratama.com" target="_blank" class="text-yellow-500 hover:text-blue-500 transition-colors">WWW.SEKAWANPUTRAPRATAMA.COM</a>
             </p>
         </div>
     </div>
