@@ -21,16 +21,31 @@ class EnsureTeamMembership
         $user = $request->user();
         $team = $this->team($request);
 
+        // Jika tim tidak ditemukan di database, coba cari tim pribadi user sebagai cadangan
+        if (! $team && $user) {
+            $team = $user->currentTeam ?? $user->personalTeam();
+        }
+
+        // Jika masih tidak ada tim atau user tidak login
+        if (! $user || ! $team) {
+            return $next($request);
+        }
+
         // Jika user adalah admin, izinkan akses ke tim mana pun
-        if ($user && $user->role === 'admin') {
-            if ($team && ! $user->isCurrentTeam($team)) {
+        if ($user->role === 'admin') {
+            if (! $user->isCurrentTeam($team)) {
                 $user->switchTeam($team);
             }
             return $next($request);
         }
 
         // Cek keanggotaan tim untuk user biasa
-        abort_if(! $user || ! $team || ! $user->belongsToTeam($team), 403);
+        if (! $user->belongsToTeam($team)) {
+            // Jika dia pemilik tim tapi tidak terdaftar di pivot, kita coba izinkan jika ID tim cocok dengan current_team_id
+            if ($user->current_team_id !== $team->id) {
+                abort(403, 'Anda bukan anggota tim ini.');
+            }
+        }
 
         $this->ensureTeamMemberHasRequiredRole($user, $team, $minimumRole);
 

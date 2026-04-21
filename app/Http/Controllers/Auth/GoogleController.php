@@ -44,10 +44,15 @@ class GoogleController extends Controller
         $team = $user->currentTeam ?? $user->personalTeam();
 
         if (! $team) {
-            $team = $user->ownedTeams()->create([
+            $team = \App\Models\Team::create([
                 'name' => $user->name . "'s Team",
                 'slug' => Str::slug($user->name . '-' . Str::random(5)),
-                'personal_team' => true,
+                'is_personal' => true,
+            ]);
+
+            // Daftarkan user ke tim tersebut sebagai OWNER di tabel pivot
+            $user->teams()->attach($team->id, [
+                'role' => \App\Enums\TeamRole::Owner->value,
             ]);
 
             $user->forceFill([
