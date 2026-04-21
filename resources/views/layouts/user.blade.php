@@ -44,6 +44,10 @@
                        class="px-4 py-2 rounded-xl text-sm font-bold transition-all text-gray-400 hover:text-white">
                         Booking Saya
                     </a>
+                    <a href="{{ route('2fa.settings', $current_team) }}"
+                       class="px-4 py-2 rounded-xl text-sm font-bold transition-all text-gray-400 hover:text-white">
+                        Keamanan
+                    </a>
                 </nav>
             </div>
 

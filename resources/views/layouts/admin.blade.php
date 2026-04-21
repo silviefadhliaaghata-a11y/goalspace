@@ -90,6 +90,12 @@
 
             <div class="pt-8">
                 <p class="px-4 text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] mb-4">Account</p>
+                
+                <a href="{{ route('2fa.settings', $current_team) }}" 
+                   class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-white/5 {{ request()->routeIs('2fa.*') ? 'nav-link-active text-emerald-400' : 'text-slate-400' }}">
+                    <span>🛡️</span> Security (2FA)
+                </a>
+
                 <button onclick="openLogoutModal()" class="w-full flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-red-500/10 text-red-400">
                     <span>🚪</span> Logout
                 </button>
