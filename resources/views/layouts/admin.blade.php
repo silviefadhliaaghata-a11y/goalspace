@@ -130,9 +130,26 @@
 
         <!-- CONTENT -->
         <section class="p-8 pb-20">
+            @if(session('success'))
+                <div class="mb-8 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 p-6 rounded-[2rem] flex items-center gap-4 animate-fade-in">
+                    <span class="text-2xl">✅</span>
+                    <p class="font-black uppercase tracking-widest text-xs">{{ session('success') }}</p>
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="mb-8 bg-red-500/10 border border-red-500/20 text-red-400 p-6 rounded-[2rem] flex items-center gap-4 animate-pulse">
+                    <span class="text-2xl">⚠️</span>
+                    <p class="font-black uppercase tracking-widest text-xs">{{ session('error') }}</p>
+                </div>
+            @endif
+
             @yield('content')
         </section>
     </main>
+
+    @stack('modals')
+    @stack('scripts')
 
     <!-- LOGOUT MODAL -->
     <div id="logoutModal" class="fixed inset-0 hidden items-center justify-center bg-slate-950/80 backdrop-blur-md z-[100]">

@@ -97,14 +97,28 @@ class LapanganController extends Controller
 
     public function destroy($current_team, Lapangan $lapangan)
     {
-        if ($lapangan->gambar && Storage::disk('public')->exists($lapangan->gambar)) {
-            Storage::disk('public')->delete($lapangan->gambar);
+        try {
+            if ($lapangan->gambar) {
+                // Hapus dari folder uploads (jalur baru)
+                $oldPath = public_path('uploads/' . $lapangan->gambar);
+                if (file_exists($oldPath)) {
+                    @unlink($oldPath);
+                }
+                
+                // Cek juga di folder storage lama
+                if (Storage::disk('public')->exists($lapangan->gambar)) {
+                    Storage::disk('public')->delete($lapangan->gambar);
+                }
+            }
+
+            $lapangan->delete();
+
+            return redirect()->route('lapangan.index', $current_team)
+                ->with('success', 'Data lapangan berhasil dihapus.');
+        } catch (\Exception $e) {
+            return redirect()->route('lapangan.index', $current_team)
+                ->with('error', 'Gagal menghapus! Lapangan ini masih memiliki data booking yang aktif.');
         }
-
-        $lapangan->delete();
-
-        return redirect()->route('lapangan.index', $current_team)
-            ->with('success', 'Data lapangan berhasil dihapus.');
     }
    
 

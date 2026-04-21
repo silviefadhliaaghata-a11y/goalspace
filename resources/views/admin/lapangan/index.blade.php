@@ -118,4 +118,54 @@
     {{ $lapangans->links() }}
 </div>
 
+</div>
+
+@push('modals')
+<!-- Delete Confirmation Modal -->
+<div id="deleteModal" class="fixed inset-0 z-[9999] hidden overflow-y-auto">
+    <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 transition-opacity bg-slate-950/80 backdrop-blur-sm" onclick="closeDeleteModal()"></div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>&#8203;
+        
+        <div class="inline-block align-bottom glass-card rounded-[2.5rem] text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full border-white/10">
+            <div class="p-10">
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-20 h-20 bg-red-500/10 rounded-full flex items-center justify-center text-3xl mb-6 border border-red-500/20 animate-pulse">
+                        ⚠️
+                    </div>
+                    <h3 class="text-2xl font-black text-white uppercase italic tracking-tighter mb-2">Hapus Arena?</h3>
+                    <p class="text-slate-400 font-bold uppercase tracking-widest text-[10px] leading-relaxed">Tindakan ini tidak dapat dibatalkan. Seluruh data lapangan akan terhapus permanen.</p>
+                </div>
+            </div>
+            <div class="px-10 py-8 bg-white/5 flex gap-4">
+                <button onclick="closeDeleteModal()" class="flex-1 bg-white/5 hover:bg-white/10 text-white font-black py-4 rounded-2xl uppercase tracking-widest text-[10px] transition-all">
+                    Batal
+                </button>
+                <form id="deleteForm" method="POST" class="flex-1">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="w-full bg-red-600 hover:bg-red-500 text-white font-black py-4 rounded-2xl uppercase tracking-widest text-[10px] transition-all italic shadow-lg shadow-red-600/20">
+                        Ya, Hapus
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endpush
+
+@push('scripts')
+<script>
+    function openDeleteModal(url) {
+        document.getElementById('deleteForm').action = url;
+        document.getElementById('deleteModal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeDeleteModal() {
+        document.getElementById('deleteModal').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+</script>
+@endpush
 @endsection
