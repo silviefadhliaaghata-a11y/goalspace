@@ -55,7 +55,7 @@
     </div>
 
     <!-- SIDEBAR -->
-    <aside id="adminSidebar" class="w-72 glass-sidebar fixed lg:relative top-0 left-0 h-screen z-[70] flex flex-col transition-transform duration-300 -translate-x-full lg:translate-x-0 shrink-0">
+    <aside id="adminSidebar" class="w-72 glass-sidebar fixed top-0 left-0 h-screen z-[70] flex flex-col transition-transform duration-300 -translate-x-full lg:translate-x-0 shrink-0">
         <div class="p-8 flex items-center justify-between shrink-0">
             <a href="#" class="flex items-center gap-3 group">
                 <span class="text-3xl transition-transform group-hover:scale-110 duration-300">⚽</span>
@@ -121,7 +121,7 @@
     </aside>
 
     <!-- MAIN CONTENT -->
-    <div class="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
+    <div class="flex-1 lg:ml-72 flex flex-col min-w-0 h-screen overflow-hidden">
         <main class="flex-1 flex flex-col overflow-y-auto pt-20 lg:pt-0">
         <!-- HEADER (Desktop) -->
         <header class="hidden lg:flex h-20 items-center justify-between px-8 bg-black/20 backdrop-blur-sm sticky top-0 z-40 border-b border-white/5">
