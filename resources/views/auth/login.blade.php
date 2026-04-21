@@ -64,6 +64,18 @@
                 class="w-full rounded-xl bg-gray-900 text-white py-3 font-semibold hover:bg-black transition">
                 Login
             </button>
+           <div class="mt-4">
+    <a href="{{ route('google.login') }}"
+       class="w-full flex items-center justify-center gap-3 rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm font-semibold text-gray-700 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-200">
+        
+        <!-- Logo Google PNG (lebih bagus dari SVG custom) -->
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" 
+             alt="Google" 
+             class="w-5 h-5">
+
+        <span>Login dengan Google</span>
+    </a>
+</div>
         </form>
 
         @if (Route::has('google.redirect'))

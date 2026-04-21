@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\LapanganController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\Admin\TeamController;
 use App\Http\Middleware\EnsureTeamMembership;
 use App\Models\Booking;
 use App\Models\Lapangan;
@@ -26,7 +27,7 @@ Route::view('/', 'welcome', [
 |--------------------------------------------------------------------------
 */
 Route::middleware('guest')->group(function () {
-    Route::get('/auth/google/redirect', [GoogleController::class, 'redirect'])->name('google.redirect');
+    Route::get('/auth/google', [GoogleController::class, 'redirect'])->name('google.login');
     Route::get('/auth/google/callback', [GoogleController::class, 'callback'])->name('google.callback');
 });
 
