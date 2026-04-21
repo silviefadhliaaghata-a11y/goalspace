@@ -148,8 +148,12 @@
 
     {{-- FOOTER --}}
     <footer class="bg-gray-950 border-t border-white/10">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 py-6 text-center text-sm text-gray-400">
-            © {{ date('Y') }} {{ config('app.name', 'GoalSpace') }}. All rights reserved.
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 py-8 text-center">
+            <p class="text-sm text-gray-500 font-medium">
+                © {{ date('Y') }} {{ config('app.name', 'GoalSpace') }}. Crafted with ❤️ for the Game by 
+                <a href="https://sekawanputrapratama.com" target="_blank" class="text-green-400 hover:text-green-300 font-bold transition-colors">Sekawan Putra Pratama</a>
+            </p>
+            <p class="text-[10px] text-gray-600 uppercase tracking-[0.3em] mt-2 font-bold">Elevating Futsal Experience</p>
         </div>
     </footer>
 
