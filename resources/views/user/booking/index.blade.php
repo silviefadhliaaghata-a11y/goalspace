@@ -135,7 +135,7 @@
 @endif
                         <div>
                             @if($booking->bukti_pembayaran)
-                                <a href="{{ asset('storage/' . $booking->bukti_pembayaran) }}"
+                                <a href="{{ asset('uploads/' . $booking->bukti_pembayaran) }}"
                                    target="_blank"
                                    class="inline-flex items-center text-green-600 hover:text-green-700 font-semibold text-sm">
                                     Lihat Bukti Pembayaran

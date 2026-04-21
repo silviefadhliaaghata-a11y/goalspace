@@ -13,7 +13,7 @@
         <div class="glass-card rounded-[3.5rem] p-4 border-white/10 overflow-hidden relative group">
             <div class="h-[450px] rounded-[2.8rem] overflow-hidden relative">
                 @if($lapangan->gambar)
-                    <img src="{{ asset('storage/' . $lapangan->gambar) }}"
+                    <img src="{{ asset('uploads/' . $lapangan->gambar) }}"
                          alt="{{ $lapangan->nama }}"
                          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                 @else

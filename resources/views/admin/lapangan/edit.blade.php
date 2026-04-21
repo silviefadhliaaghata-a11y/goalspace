@@ -100,7 +100,7 @@
                     <div class="mt-4">
                         <p class="text-sm font-medium text-gray-700 mb-2">Gambar Saat Ini:</p>
                         <img
-                            src="{{ asset('storage/' . $lapangan->gambar) }}"
+                            src="{{ asset('uploads/' . $lapangan->gambar) }}"
                             alt="Gambar Lapangan"
                             class="w-48 h-32 object-cover rounded-lg border"
                         >

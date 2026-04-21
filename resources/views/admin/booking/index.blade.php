@@ -75,7 +75,7 @@
 
                         <td class="px-8 py-6 text-center">
                             @if($booking->bukti_pembayaran)
-                                <img src="{{ asset('storage/' . $booking->bukti_pembayaran) }}"
+                                <img src="{{ asset('uploads/' . $booking->bukti_pembayaran) }}"
                                      class="w-12 h-12 object-cover rounded-xl cursor-pointer border border-white/10 hover:scale-110 transition duration-300 mx-auto"
                                      onclick="openImage(this.src)">
                             @else
