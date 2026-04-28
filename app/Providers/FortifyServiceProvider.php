@@ -34,6 +34,13 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.login');
         });
 
+<<<<<<< HEAD
+=======
+        Fortify::registerView(function () {
+            return view('auth.register');
+        });
+
+>>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
         Fortify::twoFactorChallengeView(function () {
             return view('auth.two-factor-challenge');
         });
@@ -48,4 +55,8 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d

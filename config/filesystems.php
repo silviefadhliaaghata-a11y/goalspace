@@ -40,8 +40,13 @@ return [
 
         'public' => [
             'driver' => 'local',
+<<<<<<< HEAD
             'root' => storage_path('app/public'),
             'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/storage',
+=======
+            'root' => (file_exists(base_path('public_html')) ? base_path('public_html/uploads') : public_path('uploads')),
+            'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/uploads',
+>>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
             'visibility' => 'public',
             'throw' => false,
             'report' => false,

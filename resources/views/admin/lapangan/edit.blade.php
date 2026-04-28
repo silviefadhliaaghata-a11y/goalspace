@@ -8,7 +8,11 @@
 </head>
 <body class="bg-gray-100 min-h-screen p-8">
     <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-sm p-8">
+<<<<<<< HEAD
         <h1 class="text-2xl font-bold mb-6">Edit Lapangan 1</h1>
+=======
+        <h1 class="text-2xl font-bold mb-6">Edit Lapangan</h1>
+>>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
 
         @if(session('success'))
             <div class="mb-4 rounded-lg bg-green-100 text-green-700 px-4 py-3">
@@ -100,7 +104,11 @@
                     <div class="mt-4">
                         <p class="text-sm font-medium text-gray-700 mb-2">Gambar Saat Ini:</p>
                         <img
+<<<<<<< HEAD
                             src="{{ asset('storage/' . $lapangan->gambar) }}"
+=======
+                            src="{{ asset('uploads/' . $lapangan->gambar) }}"
+>>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
                             alt="Gambar Lapangan"
                             class="w-48 h-32 object-cover rounded-lg border"
                         >

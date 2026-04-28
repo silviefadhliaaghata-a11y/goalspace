@@ -52,7 +52,20 @@ class LapanganController extends Controller
         ]);
 
         if ($request->hasFile('gambar')) {
+<<<<<<< HEAD
             $validated['gambar'] = $request->file('gambar')->store('lapangan', 'public');
+=======
+            $file = $request->file('gambar');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $targetFolder = (file_exists(base_path('public_html')) ? base_path('public_html/uploads/lapangan') : public_path('uploads/lapangan'));
+            
+            if (!file_exists($targetFolder)) {
+                mkdir($targetFolder, 0777, true);
+            }
+            
+            $file->move($targetFolder, $filename);
+            $validated['gambar'] = 'lapangan/' . $filename;
+>>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
         }
 
         Lapangan::create($validated);
@@ -82,11 +95,28 @@ class LapanganController extends Controller
         ]);
 
         if ($request->hasFile('gambar')) {
+<<<<<<< HEAD
             if ($lapangan->gambar && Storage::disk('public')->exists($lapangan->gambar)) {
                 Storage::disk('public')->delete($lapangan->gambar);
             }
 
             $validated['gambar'] = $request->file('gambar')->store('lapangan', 'public');
+=======
+            $file = $request->file('gambar');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            
+            // Tentukan folder tujuan (public/uploads/lapangan)
+            $targetFolder = (file_exists(base_path('public_html')) ? base_path('public_html/uploads/lapangan') : public_path('uploads/lapangan'));
+            
+            // Pastikan folder ada
+            if (!file_exists($targetFolder)) {
+                mkdir($targetFolder, 0777, true);
+            }
+            
+            // Pindahkan file secara brutal/langsung
+            $file->move($targetFolder, $filename);
+            $validated['gambar'] = 'lapangan/' . $filename;
+>>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
         }
 
         $lapangan->update($validated);
@@ -97,6 +127,7 @@ class LapanganController extends Controller
 
     public function destroy($current_team, Lapangan $lapangan)
     {
+<<<<<<< HEAD
         if ($lapangan->gambar && Storage::disk('public')->exists($lapangan->gambar)) {
             Storage::disk('public')->delete($lapangan->gambar);
         }
@@ -105,6 +136,30 @@ class LapanganController extends Controller
 
         return redirect()->route('lapangan.index', $current_team)
             ->with('success', 'Data lapangan berhasil dihapus.');
+=======
+        try {
+            if ($lapangan->gambar) {
+                // Hapus dari folder uploads (jalur baru)
+                $oldPath = public_path('uploads/' . $lapangan->gambar);
+                if (file_exists($oldPath)) {
+                    @unlink($oldPath);
+                }
+                
+                // Cek juga di folder storage lama
+                if (Storage::disk('public')->exists($lapangan->gambar)) {
+                    Storage::disk('public')->delete($lapangan->gambar);
+                }
+            }
+
+            $lapangan->delete();
+
+            return redirect()->route('lapangan.index', $current_team)
+                ->with('success', 'Data lapangan berhasil dihapus.');
+        } catch (\Exception $e) {
+            return redirect()->route('lapangan.index', $current_team)
+                ->with('error', 'Gagal menghapus! Lapangan ini masih memiliki data booking yang aktif.');
+        }
+>>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
     }
    
 
