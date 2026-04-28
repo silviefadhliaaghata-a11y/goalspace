@@ -8,7 +8,7 @@
 <div class="flex justify-between items-center mb-6">
     <div>
         <h1 class="text-2xl font-bold text-gray-800">Data Admin</h1>
-        <p class="text-sm text-gray-500">Daftar semua admin sistem</p>
+        <p class="text-sm text-gray-500">Daftar semua admin sistem 1</p>
     </div>
 
     <a href="{{ route('admins.create', $current_team) }}"
