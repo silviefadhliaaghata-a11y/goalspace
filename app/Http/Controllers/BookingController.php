@@ -79,19 +79,6 @@ public function adminIndex(Request $request, $current_team)
     'bukti_pembayaran.required' => 'Bukti pembayaran wajib diupload.',
 ];
 
-<<<<<<< HEAD
-$validated = $request->validate([
-    'lapangan_id' => 'required|exists:lapangans,id',
-    'nama_pemesan' => 'required|string|max:255',
-    'tanggal' => 'required|date',
-    'jam_mulai' => 'required',
-    'jam_selesai' => 'required|after:jam_mulai',
-    'status' => 'required|in:pending,lunas,selesai,batal',
-    'metode_pembayaran' => 'required|in:Transfer Bank,QRIS,Tunai',
-    'catatan_pembayaran' => 'nullable|string',
-    'bukti_pembayaran' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
-], $messages);
-=======
         $validated = $request->validate([
             'lapangan_id' => 'required|exists:lapangans,id',
             'nama_pemesan' => 'required|string|max:255',
@@ -105,7 +92,6 @@ $validated = $request->validate([
 
         // Jika status tidak dikirim (oleh user), default ke 'pending'
         $validated['status'] = $request->status ?? 'pending';
->>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
 
         $bentrok = Booking::where('lapangan_id', $validated['lapangan_id'])
             ->where('tanggal', $validated['tanggal'])
@@ -130,18 +116,6 @@ $validated = $request->validate([
         $validated['total_harga'] = (int) round($durasiJam * $lapangan->harga);
 
         if ($request->hasFile('bukti_pembayaran')) {
-<<<<<<< HEAD
-            $validated['bukti_pembayaran'] = $request->file('bukti_pembayaran')
-                ->store('bukti-pembayaran', 'public');
-        }
-
-        if ($request->hasFile('bukti_pembayaran')) {
-    $validated['bukti_pembayaran'] = $request->file('bukti_pembayaran')
-        ->store('bukti-pembayaran', 'public');
-}
-
-$validated['kode_booking'] = 'BOOK-' . now()->format('YmdHis') . '-' . strtoupper(Str::random(4));
-=======
             $file = $request->file('bukti_pembayaran');
             $filename = time() . '_' . $file->getClientOriginalName();
             $targetFolder = (file_exists(base_path('public_html')) ? base_path('public_html/uploads/bukti-pembayaran') : public_path('uploads/bukti-pembayaran'));
@@ -155,18 +129,12 @@ $validated['kode_booking'] = 'BOOK-' . now()->format('YmdHis') . '-' . strtouppe
         }
 
         $validated['kode_booking'] = 'BOOK-' . now()->format('YmdHis') . '-' . strtoupper(Str::random(4));
->>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
 
         $booking = Booking::create($validated);
 
         return redirect()
-<<<<<<< HEAD
-    ->route('user.booking.index', $current_team)
-    ->with('success', 'Booking berhasil ditambahkan.');
-=======
             ->route('user.booking.index', $current_team)
             ->with('success', 'Booking berhasil ditambahkan.');
->>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
     }
 
     public function edit($current_team, Booking $booking)

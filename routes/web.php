@@ -5,10 +5,7 @@ use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\LapanganController;
 use App\Http\Controllers\LaporanController;
-<<<<<<< HEAD
-=======
 use App\Http\Controllers\Admin\TeamController;
->>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
 use App\Http\Middleware\EnsureTeamMembership;
 use App\Models\Booking;
 use App\Models\Lapangan;
@@ -30,11 +27,7 @@ Route::view('/', 'welcome', [
 |--------------------------------------------------------------------------
 */
 Route::middleware('guest')->group(function () {
-<<<<<<< HEAD
-    Route::get('/auth/google/redirect', [GoogleController::class, 'redirect'])->name('google.redirect');
-=======
     Route::get('/auth/google', [GoogleController::class, 'redirect'])->name('google.login');
->>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
     Route::get('/auth/google/callback', [GoogleController::class, 'callback'])->name('google.callback');
 });
 
@@ -269,25 +262,11 @@ Route::middleware(['auth'])->group(function () {
         ->name('invitations.accept');
 });
 
-<<<<<<< HEAD
-Route::middleware(['auth', 'verified', \App\Http\Middleware\EnsureTeamMembership::class])
-    ->prefix('{current_team}')
-    ->group(function () {
-        Route::get('/security/2fa', function () {
-            return view('auth.two-factor-settings');
-        })->name('2fa.settings');
-    });
-=======
-
->>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
 
 Route::get('/user/confirm-password', function () {
     return redirect()->route('dashboard');
 });
 
-<<<<<<< HEAD
-require __DIR__ . '/settings.php';
-=======
 require __DIR__ . '/settings.php';
 
 Route::get('/clean-all', function() {
@@ -297,4 +276,3 @@ Route::get('/clean-all', function() {
     Artisan::call('route:clear');
     return "Semua Cache BERHASIL dibersihkan! Silakan coba upload lagi.";
 });
->>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d

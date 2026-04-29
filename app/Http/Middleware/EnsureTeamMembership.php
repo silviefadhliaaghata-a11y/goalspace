@@ -7,10 +7,7 @@ use App\Models\Team;
 use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
-<<<<<<< HEAD
-=======
 use Illuminate\Support\Facades\URL;
->>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
 use Symfony\Component\HttpFoundation\Response;
 
 class EnsureTeamMembership
@@ -22,18 +19,6 @@ class EnsureTeamMembership
      */
     public function handle(Request $request, Closure $next, ?string $minimumRole = null): Response
     {
-<<<<<<< HEAD
-        [$user, $team] = [$request->user(), $this->team($request)];
-
-        abort_if(! $user || ! $team || ! $user->belongsToTeam($team), 403);
-
-        $this->ensureTeamMemberHasRequiredRole($user, $team, $minimumRole);
-
-        if ($request->route('current_team') && ! $user->isCurrentTeam($team)) {
-            $user->switchTeam($team);
-        }
-
-=======
         $user = $request->user();
         $team = $this->team($request);
 
@@ -67,7 +52,6 @@ class EnsureTeamMembership
         // Set default URL agar tim tetap terbawa di link-link lain
         URL::defaults(['current_team' => $team->slug]);
 
->>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
         return $next($request);
     }
 

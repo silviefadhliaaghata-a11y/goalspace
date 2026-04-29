@@ -52,9 +52,6 @@ class LapanganController extends Controller
         ]);
 
         if ($request->hasFile('gambar')) {
-<<<<<<< HEAD
-            $validated['gambar'] = $request->file('gambar')->store('lapangan', 'public');
-=======
             $file = $request->file('gambar');
             $filename = time() . '_' . $file->getClientOriginalName();
             $targetFolder = (file_exists(base_path('public_html')) ? base_path('public_html/uploads/lapangan') : public_path('uploads/lapangan'));
@@ -65,7 +62,6 @@ class LapanganController extends Controller
             
             $file->move($targetFolder, $filename);
             $validated['gambar'] = 'lapangan/' . $filename;
->>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
         }
 
         Lapangan::create($validated);
@@ -95,13 +91,6 @@ class LapanganController extends Controller
         ]);
 
         if ($request->hasFile('gambar')) {
-<<<<<<< HEAD
-            if ($lapangan->gambar && Storage::disk('public')->exists($lapangan->gambar)) {
-                Storage::disk('public')->delete($lapangan->gambar);
-            }
-
-            $validated['gambar'] = $request->file('gambar')->store('lapangan', 'public');
-=======
             $file = $request->file('gambar');
             $filename = time() . '_' . $file->getClientOriginalName();
             
@@ -116,7 +105,6 @@ class LapanganController extends Controller
             // Pindahkan file secara brutal/langsung
             $file->move($targetFolder, $filename);
             $validated['gambar'] = 'lapangan/' . $filename;
->>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
         }
 
         $lapangan->update($validated);
@@ -127,16 +115,6 @@ class LapanganController extends Controller
 
     public function destroy($current_team, Lapangan $lapangan)
     {
-<<<<<<< HEAD
-        if ($lapangan->gambar && Storage::disk('public')->exists($lapangan->gambar)) {
-            Storage::disk('public')->delete($lapangan->gambar);
-        }
-
-        $lapangan->delete();
-
-        return redirect()->route('lapangan.index', $current_team)
-            ->with('success', 'Data lapangan berhasil dihapus.');
-=======
         try {
             if ($lapangan->gambar) {
                 // Hapus dari folder uploads (jalur baru)
@@ -159,7 +137,6 @@ class LapanganController extends Controller
             return redirect()->route('lapangan.index', $current_team)
                 ->with('error', 'Gagal menghapus! Lapangan ini masih memiliki data booking yang aktif.');
         }
->>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
     }
    
 

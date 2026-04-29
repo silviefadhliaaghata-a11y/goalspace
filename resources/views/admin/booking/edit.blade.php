@@ -96,11 +96,7 @@
 
                     @if($booking->bukti_pembayaran)
                         <div class="mt-3">
-<<<<<<< HEAD
-                            <img src="{{ asset('storage/'.$booking->bukti_pembayaran) }}"
-=======
                             <img src="{{ asset('uploads/'.$booking->bukti_pembayaran) }}"
->>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
                                  class="w-32 rounded shadow">
                         </div>
                     @endif

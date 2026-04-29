@@ -1,56 +1,5 @@
 @extends('layouts.admin')
 
-<<<<<<< HEAD
-@section('title', 'Dashboard')
-@section('page_heading', 'Dashboard Admin')
-
-@section('content')
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-            <p class="text-sm text-gray-500">Total User</p>
-            <h3 class="text-3xl font-bold text-gray-800 mt-2">{{ $totalUser }}</h3>
-        </div>
-
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-            <p class="text-sm text-gray-500">Total Lapangan</p>
-            <h3 class="text-3xl font-bold text-gray-800 mt-2">{{ $totalLapangan }}</h3>
-        </div>
-
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-            <p class="text-sm text-gray-500">Total Booking</p>
-            <h3 class="text-3xl font-bold text-gray-800 mt-2">{{ $totalBooking }}</h3>
-        </div>
-
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-            <p class="text-sm text-gray-500">Pendapatan</p>
-            <h3 class="text-3xl font-bold text-gray-800 mt-2">
-                Rp{{ number_format($totalPendapatan, 0, ',', '.') }}
-            </h3>
-        </div>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-            <p class="text-sm text-gray-500">Booking Hari Ini</p>
-            <h3 class="text-2xl font-bold text-blue-600 mt-2">{{ $bookingHariIni }}</h3>
-        </div>
-
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-            <p class="text-sm text-gray-500">Booking Pending</p>
-            <h3 class="text-2xl font-bold text-yellow-600 mt-2">{{ $bookingPending }}</h3>
-        </div>
-    </div>
-
-    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-6">
-        <div class="bg-white rounded-xl shadow p-5">
-            <h3 class="font-semibold mb-3">Booking per Bulan</h3>
-            <canvas id="bookingChart"></canvas>
-        </div>
-
-        <div class="bg-white rounded-xl shadow p-5">
-            <h3 class="font-semibold mb-3">Pendapatan per Bulan</h3>
-            <canvas id="pendapatanChart"></canvas>
-=======
 @section('title', 'Dashboard Admin')
 @section('page_heading', 'Administrator Dashboard')
 
@@ -159,7 +108,6 @@
             <div class="h-[350px]">
                 <canvas id="pendapatanChart"></canvas>
             </div>
->>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
         </div>
     </div>
 @endsection
@@ -171,8 +119,6 @@ const bulanLabels = @json($namaBulan);
 const bookingData = @json($bookingChartData);
 const pendapatanData = @json($pendapatanChartData);
 
-<<<<<<< HEAD
-=======
 const commonOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -191,7 +137,6 @@ const commonOptions = {
     }
 };
 
->>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
 new Chart(document.getElementById('bookingChart'), {
     type: 'bar',
     data: {
@@ -199,24 +144,12 @@ new Chart(document.getElementById('bookingChart'), {
         datasets: [{
             label: 'Booking',
             data: bookingData,
-<<<<<<< HEAD
-            borderWidth: 1
-        }]
-    },
-    options: {
-        responsive: true,
-        scales: {
-            y: { beginAtZero: true }
-        }
-    }
-=======
             backgroundColor: '#10b981',
             borderRadius: 12,
             barThickness: 25
         }]
     },
     options: commonOptions
->>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
 });
 
 new Chart(document.getElementById('pendapatanChart'), {
@@ -226,22 +159,6 @@ new Chart(document.getElementById('pendapatanChart'), {
         datasets: [{
             label: 'Pendapatan',
             data: pendapatanData,
-<<<<<<< HEAD
-            borderWidth: 2,
-            tension: 0.3,
-            fill: false
-        }]
-    },
-    options: {
-        responsive: true,
-        scales: {
-            y: {
-                beginAtZero: true,
-                ticks: {
-                    callback: function(value) {
-                        return 'Rp' + Number(value).toLocaleString('id-ID');
-                    }
-=======
             borderColor: '#10b981',
             backgroundColor: 'rgba(16, 185, 129, 0.05)',
             borderWidth: 4,
@@ -261,23 +178,14 @@ new Chart(document.getElementById('pendapatanChart'), {
                 ticks: {
                     ...commonOptions.scales.y.ticks,
                     callback: v => 'Rp' + Number(v).toLocaleString('id-ID')
->>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
                 }
             }
         },
         plugins: {
-<<<<<<< HEAD
-            tooltip: {
-                callbacks: {
-                    label: function(context) {
-                        return 'Rp' + Number(context.raw).toLocaleString('id-ID');
-                    }
-=======
             ...commonOptions.plugins,
             tooltip: {
                 callbacks: {
                     label: c => ' Rp' + Number(c.raw).toLocaleString('id-ID')
->>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
                 }
             }
         }

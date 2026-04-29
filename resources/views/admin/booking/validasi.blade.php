@@ -1,16 +1,6 @@
 @extends('layouts.admin')
 
 @section('title', 'Validasi Booking')
-<<<<<<< HEAD
-@section('page_heading', 'Validasi Booking')
-
-@section('content')
-<div class="max-w-3xl mx-auto">
-
-    @if(session('error'))
-        <div class="mb-4 rounded-lg bg-red-100 text-red-700 px-4 py-3">
-            {{ session('error') }}
-=======
 @section('page_heading', 'Security Check-in')
 
 @section('content')
@@ -19,21 +9,10 @@
     @if(session('error'))
         <div class="mb-6 rounded-2xl bg-red-500/10 text-red-500 border border-red-500/20 px-6 py-4 font-black uppercase tracking-widest text-[10px]">
             ⚠️ {{ session('error') }}
->>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
         </div>
     @endif
 
     @if(session('success'))
-<<<<<<< HEAD
-        <div class="mb-4 rounded-lg bg-green-100 text-green-700 px-4 py-3">
-            {{ session('success') }}
-        </div>
-    @endif
-
-    <div class="bg-white rounded-2xl shadow p-6 mb-6">
-        <h2 class="text-lg font-bold text-gray-800 mb-2">Cari Booking</h2>
-        <p class="text-sm text-gray-500 mb-4">Masukkan kode booking untuk validasi masuk lapangan.</p>
-=======
         <div class="mb-6 rounded-2xl bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 px-6 py-4 font-black uppercase tracking-widest text-[10px]">
             ✅ {{ session('success') }}
         </div>
@@ -43,24 +22,10 @@
         <div class="absolute right-0 top-0 p-12 text-6xl opacity-[0.03] group-hover:opacity-10 transition-opacity">🛡️</div>
         <h2 class="text-2xl font-black text-white mb-2 uppercase tracking-tighter italic">Cari Kode Reservasi</h2>
         <p class="text-xs text-slate-500 mb-8 font-bold uppercase tracking-widest">Scan atau ketik kode booking untuk validasi masuk.</p>
->>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
 
         <form method="POST" action="{{ route('admin.booking.validasi.proses', $current_team) }}">
             @csrf
 
-<<<<<<< HEAD
-            <div class="flex flex-col sm:flex-row gap-3">
-                <input type="text"
-                       name="kode_booking"
-                       value="{{ old('kode_booking', $booking->kode_booking ?? request('kode')) }}"
-                       placeholder="Contoh: BOOK-20260418-ABCD"
-                       class="w-full rounded-xl border border-gray-300 px-4 py-3"
-                       required>
-
-                <button type="submit"
-                        class="bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition">
-                    Cari
-=======
             <div class="flex flex-col sm:flex-row gap-4">
                 <input type="text"
                        name="kode_booking"
@@ -72,95 +37,16 @@
                 <button type="submit"
                         class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-12 py-5 rounded-[2rem] font-black transition shadow-xl shadow-emerald-500/20 uppercase tracking-widest text-xs">
                     Search
->>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
                 </button>
             </div>
 
             @error('kode_booking')
-<<<<<<< HEAD
-                <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
-=======
                 <p class="mt-4 text-[10px] text-red-500 font-black uppercase tracking-widest ml-4">{{ $message }}</p>
->>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
             @enderror
         </form>
     </div>
 
     @isset($booking)
-<<<<<<< HEAD
-        <div class="bg-white rounded-2xl shadow p-6">
-            <h2 class="text-lg font-bold text-gray-800 mb-4">Detail Booking</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="rounded-xl border p-4">
-                    <p class="text-sm text-gray-500">Kode Booking</p>
-                    <p class="font-bold text-gray-800 mt-1">{{ $booking->kode_booking }}</p>
-                </div>
-
-                <div class="rounded-xl border p-4">
-                    <p class="text-sm text-gray-500">Nama Pemesan</p>
-                    <p class="font-bold text-gray-800 mt-1">{{ $booking->nama_pemesan }}</p>
-                </div>
-
-                <div class="rounded-xl border p-4">
-                    <p class="text-sm text-gray-500">Lapangan</p>
-                    <p class="font-bold text-gray-800 mt-1">{{ $booking->lapangan->nama ?? '-' }}</p>
-                </div>
-
-                <div class="rounded-xl border p-4">
-                    <p class="text-sm text-gray-500">Tanggal</p>
-                    <p class="font-bold text-gray-800 mt-1">{{ $booking->tanggal }}</p>
-                </div>
-
-                <div class="rounded-xl border p-4">
-                    <p class="text-sm text-gray-500">Jam Main</p>
-                    <p class="font-bold text-gray-800 mt-1">
-                        {{ $booking->jam_mulai }} - {{ $booking->jam_selesai }}
-                    </p>
-                </div>
-
-                <div class="rounded-xl border p-4">
-                    <p class="text-sm text-gray-500">Status</p>
-                    <div class="mt-1">
-                        @php $status = strtolower($booking->status); @endphp
-
-                        @if($status === 'pending')
-                            <span class="px-3 py-1 text-xs rounded-full bg-yellow-100 text-yellow-700 font-semibold">
-                                Pending
-                            </span>
-                        @elseif($status === 'lunas')
-                            <span class="px-3 py-1 text-xs rounded-full bg-green-100 text-green-700 font-semibold">
-                                Lunas
-                            </span>
-                        @elseif($status === 'selesai')
-                            <span class="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-700 font-semibold">
-                                Selesai
-                            </span>
-                        @else
-                            <span class="px-3 py-1 text-xs rounded-full bg-red-100 text-red-700 font-semibold">
-                                Batal
-                            </span>
-                        @endif
-                    </div>
-                </div>
-            </div>
-
-            @if(!$booking->checked_in_at)
-                <form method="POST"
-                      action="{{ route('admin.booking.checkin', [$current_team, $booking->id]) }}"
-                      class="mt-6">
-                    @csrf
-
-                    <button type="submit"
-                            class="bg-green-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-green-700 transition">
-                        Validasi Masuk
-                    </button>
-                </form>
-            @else
-                <div class="mt-6 rounded-xl bg-green-100 text-green-700 px-4 py-3">
-                    Booking ini sudah check-in pada {{ $booking->checked_in_at }}
-                </div>
-=======
         <div class="glass-card rounded-[3rem] p-12 border-emerald-500/20 animate-in fade-in slide-in-from-bottom-10 duration-700">
             <div class="flex items-center justify-between mb-10">
                 <h2 class="text-xl font-black text-white uppercase tracking-tighter italic">Informasi Kedatangan</h2>
@@ -221,7 +107,6 @@
             
             @if($booking->checked_in_at)
                 <p class="text-center text-[9px] text-slate-600 font-black uppercase tracking-widest mt-6 italic">Validated on {{ $booking->checked_in_at }}</p>
->>>>>>> 00721e68acd6bbb36b9bc4947622351e08c82e7d
             @endif
         </div>
     @endisset
