@@ -72,7 +72,7 @@
                     </p>
 
                     <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
-                        Sehatkan Dirimu Dengan 1234
+                        Sehatkan Dirimu Dengan
                         <br>
                         Berolahraga di
                         <span class="text-green-400">GoalSpace</span>
