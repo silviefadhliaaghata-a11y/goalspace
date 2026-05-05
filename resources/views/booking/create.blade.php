@@ -1,4 +1,3 @@
-```html id="z9l2mx"
 @extends('layouts.user')
 
 @section('content')
