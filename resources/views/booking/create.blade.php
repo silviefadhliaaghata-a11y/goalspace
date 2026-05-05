@@ -35,7 +35,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
                 <div class="space-y-4">
-                    <label class="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] ml-4">
+                    <label class="text-[15px] font-black text-slate-500 uppercase tracking-[0.3em] ml-4">
                         Nama Pemesan
                     </label>
                     <input type="text" name="nama_pemesan"
@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="space-y-4">
-                    <label class="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] ml-4">
+                    <label class="text-[15px] font-black text-slate-500 uppercase tracking-[0.3em] ml-4">
                         Pilih Tanggal
                     </label>
                     <input type="date" name="tanggal" id="tanggal"
@@ -134,7 +134,7 @@
                 </div>
 
                 <div class="text-right">
-                    <p class="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">
+                    <p class="text-[15px] font-black text-slate-500 uppercase tracking-[0.3em]">
                         Total Harga
                     </p>
                     <h2 class="text-4xl font-black text-emerald-500 italic" id="display_total">
@@ -154,7 +154,7 @@
         <div class="glass-card rounded-[3rem] p-10 bg-white border border-gray-200 shadow-xl space-y-8">
 
             <div class="space-y-4">
-                <label class="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] ml-4">
+                <label class="text-[15px] font-black text-slate-500 uppercase tracking-[0.3em] ml-4">
                     Metode Pembayaran
                 </label>
                 <select name="metode_pembayaran"
@@ -167,7 +167,7 @@
             </div>
 
             <div class="space-y-4">
-                <label class="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] ml-4">
+                <label class="text-[15px] font-black text-slate-500 uppercase tracking-[0.3em] ml-4">
                     Catatan (Opsional)
                 </label>
                 <textarea name="catatan_pembayaran" rows="3"
@@ -175,7 +175,7 @@
             </div>
 
             <div class="space-y-4">
-                <label class="text-[10px] font-black text-emerald-500 uppercase tracking-[0.3em] ml-4">
+                <label class="text-[12px] font-black text-emerald-500 uppercase tracking-[0.3em] ml-4">
                     Upload Bukti Pembayaran
                 </label>
 

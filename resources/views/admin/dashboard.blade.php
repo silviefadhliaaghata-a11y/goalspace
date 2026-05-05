@@ -5,15 +5,15 @@
 
 @section('content')
     <!-- STATS GRID -->
-    <!-- STATS GRID -->
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
+
         {{-- Total Pelanggan --}}
         <div class="glass-card rounded-[2rem] p-6 group hover:border-emerald-500 transition-all duration-500 relative overflow-hidden">
             <div class="absolute -right-2 -top-2 w-16 h-16 bg-emerald-500/10 rounded-full blur-xl group-hover:bg-emerald-500/30 transition-all"></div>
             <div class="relative z-10">
                 <p class="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3">User</p>
                 <div class="flex items-center gap-2">
-                    <h3 class="text-3xl md:text-5xl font-black text-white tracking-tighter">{{ $totalUser }}</h3>
+                    <h3 class="text-3xl md:text-5xl font-black text-gray-800 tracking-tighter">{{ $totalUser }}</h3>
                     <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
                 </div>
             </div>
@@ -25,8 +25,8 @@
             <div class="relative z-10">
                 <p class="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3">Arena</p>
                 <div class="flex items-center gap-2">
-                    <h3 class="text-3xl md:text-5xl font-black text-white tracking-tighter">{{ $totalLapangan }}</h3>
-                    <span class="text-[10px] font-bold text-blue-400 uppercase tracking-tighter">Unit</span>
+                    <h3 class="text-3xl md:text-5xl font-black text-gray-800 tracking-tighter">{{ $totalLapangan }}</h3>
+                    <span class="text-[10px] font-bold text-blue-500 uppercase tracking-tighter">Unit</span>
                 </div>
             </div>
         </div>
@@ -37,8 +37,8 @@
             <div class="relative z-10">
                 <p class="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3">Booking</p>
                 <div class="flex items-center gap-2">
-                    <h3 class="text-3xl md:text-5xl font-black text-white tracking-tighter">{{ $totalBooking }}</h3>
-                    <span class="text-[10px] font-bold text-orange-400 uppercase tracking-tighter">Sesi</span>
+                    <h3 class="text-3xl md:text-5xl font-black text-gray-800 tracking-tighter">{{ $totalBooking }}</h3>
+                    <span class="text-[10px] font-bold text-orange-500 uppercase tracking-tighter">Sesi</span>
                 </div>
             </div>
         </div>
@@ -48,22 +48,25 @@
             <div class="absolute -right-2 -top-2 w-16 h-16 bg-emerald-400/10 rounded-full blur-xl group-hover:bg-emerald-400/30 transition-all"></div>
             <div class="relative z-10">
                 <p class="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3 italic">Income</p>
-                <h3 class="text-xl md:text-2xl font-black text-white tracking-tight italic">Rp{{ number_format($totalPendapatan, 0, ',', '.') }}</h3>
+                <h3 class="text-xl md:text-2xl font-black text-gray-800 tracking-tight italic">
+                    Rp{{ number_format($totalPendapatan, 0, ',', '.') }}
+                </h3>
             </div>
         </div>
     </div>
 
     <!-- DAILY MONITOR -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+
         <div class="glass-card rounded-[2.5rem] p-8 relative overflow-hidden group">
             <div class="absolute right-0 top-0 p-8 text-6xl opacity-[0.05] group-hover:opacity-20 transition-opacity">⚽</div>
             <h4 class="text-[10px] font-black text-emerald-500 uppercase tracking-[0.4em] mb-4">Hari Ini</h4>
             <div class="flex items-center gap-6">
-                <div class="text-6xl font-black text-white tracking-tighter italic">{{ $bookingHariIni }}</div>
-                <div class="h-12 w-[1px] bg-white/10"></div>
+                <div class="text-6xl font-black text-gray-800 tracking-tighter italic">{{ $bookingHariIni }}</div>
+                <div class="h-12 w-[1px] bg-gray-200"></div>
                 <div>
-                    <p class="text-xs font-bold text-slate-400">Booking Aktif</p>
-                    <p class="text-[10px] text-slate-500 mt-1 uppercase font-black italic">Ready to play</p>
+                    <p class="text-xs font-bold text-slate-500">Booking Aktif</p>
+                    <p class="text-[10px] text-slate-400 mt-1 uppercase font-black italic">Ready to play</p>
                 </div>
             </div>
         </div>
@@ -72,11 +75,11 @@
             <div class="absolute right-0 top-0 p-8 text-6xl opacity-[0.05] group-hover:opacity-20 transition-opacity">⏳</div>
             <h4 class="text-[10px] font-black text-orange-500 uppercase tracking-[0.4em] mb-4">Pending</h4>
             <div class="flex items-center gap-6">
-                <div class="text-6xl font-black text-white tracking-tighter italic">{{ $bookingPending }}</div>
-                <div class="h-12 w-[1px] bg-white/10"></div>
+                <div class="text-6xl font-black text-gray-800 tracking-tighter italic">{{ $bookingPending }}</div>
+                <div class="h-12 w-[1px] bg-gray-200"></div>
                 <div>
-                    <p class="text-xs font-bold text-slate-400">Perlu Validasi</p>
-                    <p class="text-[10px] text-slate-500 mt-1 uppercase font-black italic text-orange-500/50">Action required</p>
+                    <p class="text-xs font-bold text-slate-500">Perlu Validasi</p>
+                    <p class="text-[10px] text-slate-400 mt-1 uppercase font-black italic text-orange-400">Action required</p>
                 </div>
             </div>
         </div>
@@ -84,9 +87,10 @@
 
     <!-- CHARTS -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
         <div class="glass-card rounded-[3rem] p-10">
             <div class="flex items-center justify-between mb-10">
-                <h3 class="text-sm font-black text-white uppercase tracking-[0.3em]">Grafik Aktivitas</h3>
+                <h3 class="text-sm font-black text-gray-800 uppercase tracking-[0.3em]">Grafik Aktivitas</h3>
                 <div class="flex gap-2">
                     <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
                     <span class="text-[10px] font-bold text-slate-500 uppercase">Per Bulan</span>
@@ -97,9 +101,9 @@
             </div>
         </div>
 
-        <div class="glass-card rounded-[3rem] p-10 text-emerald-400">
+        <div class="glass-card rounded-[3rem] p-10 text-emerald-500">
             <div class="flex items-center justify-between mb-10">
-                <h3 class="text-sm font-black text-white uppercase tracking-[0.3em]">Laporan Keuangan</h3>
+                <h3 class="text-sm font-black text-gray-800 uppercase tracking-[0.3em]">Laporan Keuangan</h3>
                 <div class="flex gap-2">
                     <span class="w-2 h-2 rounded-full bg-blue-500"></span>
                     <span class="text-[10px] font-bold text-slate-500 uppercase">Omzet</span>
@@ -109,6 +113,7 @@
                 <canvas id="pendapatanChart"></canvas>
             </div>
         </div>
+
     </div>
 @endsection
 
@@ -127,7 +132,7 @@ const commonOptions = {
     },
     scales: {
         y: { 
-            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+            grid: { color: 'rgba(0,0,0,0.05)' }, // sedikit disesuaikan agar cocok background terang
             ticks: { color: '#64748b', font: { size: 10, weight: 'bold' } }
         },
         x: { 
@@ -164,7 +169,7 @@ new Chart(document.getElementById('pendapatanChart'), {
             borderWidth: 4,
             tension: 0.4,
             fill: true,
-            pointBackgroundColor: '#fff',
+            pointBackgroundColor: '#10b981',
             pointRadius: 4,
             pointHoverRadius: 6
         }]

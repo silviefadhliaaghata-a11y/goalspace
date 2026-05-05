@@ -11,7 +11,7 @@
             <h1 class="text-3xl md:text-5xl font-black tracking-tight leading-tight uppercase italic">
                 Halo, <span class="text-emerald-400">{{ explode(' ', auth()->user()->name)[0] }}!</span> ⚽
             </h1>
-            <p class="mt-4 text-gray-400 text-sm md:text-lg max-w-xl font-medium italic">
+            <p class="mt-4 text-white-400 text-sm md:text-lg max-w-xl font-medium italic">
                 "Kemenangan hari ini dimulai dari booking lapangan yang tepat."
             </p>
 
@@ -58,7 +58,7 @@
     <div class="overflow-x-auto overflow-y-hidden">
         <table class="w-full min-w-[600px]">
             <thead class="bg-white/5">
-                <tr class="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em]">
+                <tr class="text-[10px] font-black text-white-500 uppercase tracking-[0.3em]">
                     <th class="px-8 py-4 text-left">Lapangan</th>
                     <th class="px-8 py-4 text-center">Status</th>
                     <th class="px-8 py-4 text-right">Total</th>
@@ -67,9 +67,9 @@
             <tbody class="divide-y divide-white/5">
                 @forelse($bookingTerbaru as $booking)
                     <tr class="hover:bg-white/5 transition">
-                        <td class="px-8 py-6 font-bold text-gray-300">
+                        <td class="px-8 py-6 font-bold text-white-300">
                             {{ $booking->lapangan->nama ?? '-' }}
-                            <div class="text-[10px] text-gray-500 mt-1 font-medium">{{ \Carbon\Carbon::parse($booking->tanggal)->format('d M Y') }} | {{ $booking->jam_mulai }}</div>
+                            <div class="text-[10px] text-white-500 mt-1 font-medium">{{ \Carbon\Carbon::parse($booking->tanggal)->format('d M Y') }} | {{ $booking->jam_mulai }}</div>
                         </td>
                         <td class="px-8 py-6 text-center">
                             @php $status = strtolower($booking->status); @endphp
@@ -85,7 +85,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="3" class="px-8 py-20 text-center text-gray-500 italic">Belum ada aktivitas booking.</td>
+                        <td colspan="3" class="px-8 py-20 text-center text-white-500 italic">Belum ada aktivitas booking.</td>
                     </tr>
                 @endforelse
             </tbody>

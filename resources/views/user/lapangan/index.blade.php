@@ -10,7 +10,7 @@
             <h1 class="text-4xl md:text-6xl font-black text-white leading-none tracking-tighter uppercase italic">
                 Pilih <span class="text-emerald-500">Arena</span><br>Tunjukkan Skillmu.
             </h1>
-            <p class="mt-6 text-slate-400 font-bold uppercase tracking-widest text-xs leading-relaxed max-w-xl">
+            <p class="mt-6 text-white-400 font-bold uppercase tracking-widest text-xs leading-relaxed max-w-xl">
                 Booking lapangan futsal standar internasional dengan sistem pembayaran instan dan jadwal yang selalu akurat.
             </p>
         </div>
@@ -25,7 +25,7 @@
                 <div class="md:col-span-2">
                     <input type="text" name="search" value="{{ request('search') }}"
                            placeholder="Cari Nama Arena atau Jenis Lapangan..."
-                           class="w-full bg-white/5 border border-white/10 text-white font-bold uppercase tracking-widest text-xs px-8 py-5 rounded-2xl focus:outline-none focus:border-emerald-500 transition-all placeholder:text-slate-600">
+                           class="w-full bg-white/5 border border-white/10 text-white font-bold uppercase tracking-widest text-xs px-8 py-5 rounded-2xl focus:outline-none focus:border-emerald-500 transition-all placeholder:text-white-600">
                 </div>
 
                 <div>
