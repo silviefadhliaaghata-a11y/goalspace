@@ -148,7 +148,7 @@ public function checkSchedule(Request $request, $current_team)
             $validated['bukti_pembayaran'] = 'bukti-pembayaran/' . $filename;
         }
 
-        $validated['kode_booking'] = 'BOOK-' . now()->format('YmdHis') . '-' . strtoupper(Str::random(4));
+        $validated['kode_booking'] = 'GS-' . str_pad((Booking::max('id') + 1), 6, '0', STR_PAD_LEFT);
 
         $booking = Booking::create($validated);
 
