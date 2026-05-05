@@ -71,6 +71,26 @@ public function adminIndex(Request $request, $current_team)
     return view('booking.create', compact('lapangans', 'selectedLapangan', 'current_team'));
 }
 
+public function checkSchedule(Request $request, $current_team)
+{
+    $request->validate([
+        'tanggal' => 'required|date',
+    ]);
+
+    $lapangans = Lapangan::orderBy('nama')->get();
+
+    $bookings = Booking::whereDate('tanggal', $request->tanggal)
+        ->whereIn('status', ['pending', 'lunas', 'selesai'])
+        ->get()
+        ->groupBy('lapangan_id');
+
+
+    return response()->json([
+        'lapangans' => $lapangans,
+        'bookings' => $bookings,
+    ]);
+}
+
     public function store(Request $request, $current_team)
     {
         $messages = [
