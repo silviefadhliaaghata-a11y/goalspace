@@ -19,7 +19,17 @@ class Booking extends Model
         'catatan_pembayaran',
         'user_id',
         'kode_booking',
-'checked_in_at',
+        'checked_in_at',
+        'payment_deadline',
+'payment_verified_at',
+'payment_reference',
+    ];
+
+    protected $casts = [
+        'tanggal' => 'date',
+        'checked_in_at' => 'datetime',
+        'payment_deadline' => 'datetime',
+'payment_verified_at' => 'datetime',
     ];
 
     public function lapangan()

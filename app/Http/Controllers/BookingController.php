@@ -60,6 +60,7 @@ public function adminIndex(Request $request, $current_team)
 
     public function create(Request $request, $current_team)
 {
+    $tanggal = request('tanggal');
     $lapangans = Lapangan::orderBy('nama')->get();
 
     $selectedLapangan = null;
@@ -68,7 +69,12 @@ public function adminIndex(Request $request, $current_team)
         $selectedLapangan = Lapangan::find($request->lapangan_id);
     }
 
-    return view('booking.create', compact('lapangans', 'selectedLapangan', 'current_team'));
+     return view('booking.create', compact(
+        'lapangans',
+        'selectedLapangan',
+        'current_team',
+        'tanggal'
+    ));
 }
 
 public function checkSchedule(Request $request, $current_team)
@@ -149,6 +155,8 @@ public function checkSchedule(Request $request, $current_team)
         }
 
         $validated['kode_booking'] = 'GS-' . str_pad((Booking::max('id') + 1), 6, '0', STR_PAD_LEFT);
+        $validated['payment_reference'] = 'INV-' . strtoupper(Str::random(8));
+$validated['payment_deadline'] = now()->addHours(2);
 
         $booking = Booking::create($validated);
 
@@ -416,4 +424,23 @@ public function checkin($current_team, Booking $booking)
         ->route('admin.booking.validasi.form', $current_team)
         ->with('success', 'Booking berhasil divalidasi.');
 }   
+
+public function calendar(Request $request, $current_team)
+{
+    $tanggal = $request->tanggal ?? now()->format('Y-m-d');
+
+    $lapangans = \App\Models\Lapangan::where('status', 'tersedia')->get();
+
+    $bookingData = Booking::with('lapangan')
+        ->whereDate('tanggal', $tanggal)
+        ->get()
+        ->groupBy('lapangan_id');
+
+    return view('user.booking.calendar', [
+        'current_team' => $current_team,
+        'tanggal' => $tanggal,
+        'lapangans' => $lapangans,
+        'bookings' => $bookingData,
+    ]);
+}
 }

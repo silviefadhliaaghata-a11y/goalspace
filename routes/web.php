@@ -81,6 +81,8 @@ Route::prefix('{current_team}')
 
         // Booking User
         Route::get('/booking-saya', [BookingController::class, 'userIndex'])->name('user.booking.index');
+        Route::get('/booking-calendar', [BookingController::class, 'calendar'])
+    ->name('user.booking.calendar');
         Route::get('/booking/create', [BookingController::class, 'create'])->name('booking.create');
         Route::get('/booking/check-schedule', [BookingController::class, 'checkSchedule'])
     ->name('booking.checkSchedule');

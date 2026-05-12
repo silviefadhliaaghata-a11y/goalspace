@@ -88,6 +88,12 @@
                        {{ request()->routeIs('user.booking.*') ? 'nav-active' : 'nav-link' }}">
                         Booking Saya
                     </a>
+                    
+                    <a href="{{ route('user.booking.calendar', $current_team) }}"
+   class="px-5 py-3 rounded-2xl text-sm font-bold transition-all
+   {{ request()->routeIs('user.booking.calendar') ? 'nav-active' : 'nav-link' }}">
+    Kalender Booking
+</a>
 
                     <a href="{{ route('2fa.settings', $current_team) }}"
                        class="px-5 py-3 rounded-2xl text-sm font-bold transition-all

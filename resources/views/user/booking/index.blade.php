@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="mb-8">
-    <div class="bg-gradient-to-r from-green-600 to-green-500 rounded-3xl p-8 text-white shadow-lg">
+    <div class="bg-gradient-to-r from-blue-700 via-blue-600 to-cyan-500 rounded-3xl p-8 text-white shadow-lg">
         <h1 class="text-3xl font-extrabold">Booking Saya</h1>
         <p class="mt-2 text-green-100">
             Lihat status booking, jadwal bermain, dan bukti pembayaran kamu di sini.
@@ -27,7 +27,7 @@
             </form>
 
             <a href="{{ route('user.lapangan.index', $current_team) }}"
-               class="inline-flex items-center justify-center bg-blue-600 text-white px-5 py-3 rounded-xl font-semibold hover:bg-blue-700 transition">
+               class="inline-flex items-center justify-center bg-green-600 text-white px-5 py-3 rounded-xl font-semibold hover:bg-green-700 transition">
                 Booking Baru
             </a>
         </div>
@@ -96,14 +96,39 @@
                             </p>
                         </div>
                         <div class="bg-white rounded-xl p-4 border border-green-100">
+   <div class="bg-white rounded-xl p-4 border border-blue-100">
     <p class="text-gray-500">Kode Booking</p>
+
+    <p class="font-bold text-gray-800 mt-1">
+        {{ $booking->kode_booking ?? '-' }}
+    </p>
+</div>
+</div>
     <p class="font-bold text-gray-800 mt-1">
         {{ $booking->kode_booking ?? '-' }}
     </p>
 </div>
 
                         <div class="bg-white rounded-xl p-4 border border-green-100">
-                            <p class="text-gray-500">Metode Pembayaran</p>
+                            @if($booking->metode_pembayaran === 'Transfer Bank')
+    <p class="text-sm text-slate-600 mt-3">
+        Bank BCA • 1234567890
+    </p>
+    <p class="text-xs text-slate-400">
+        a.n GoalSpace Arena
+    </p>
+@elseif($booking->metode_pembayaran === 'QRIS')
+    <p class="text-sm text-slate-600 mt-3">
+        Pembayaran via QRIS
+    </p>
+@endif
+
+@if($booking->status === 'pending' && $booking->payment_deadline)
+    <p class="text-sm text-red-500 font-bold mt-3">
+        Batas Pembayaran:
+        {{ $booking->payment_deadline->format('d M Y • H:i') }} WIB
+    </p>
+@endif
                             <p class="font-semibold text-gray-800 mt-1">
                                 {{ $booking->metode_pembayaran ?: '-' }}
                             </p>
@@ -120,8 +145,10 @@
                     <div class="mt-4 flex items-center justify-between gap-3">
                         @if($booking->kode_booking)
     <div class="mt-4 bg-white rounded-xl p-4 border border-green-100 text-center">
-        <p class="text-gray-500 mb-3">QR Booking</p>
-
+        <div class="mt-4 bg-white rounded-2xl p-6 border border-blue-100 text-center shadow-sm">
+    <p class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4">
+        QR Validasi Arena
+    </p>
        <img
     src="https://quickchart.io/qr?size=180&text={{ urlencode(route('admin.booking.validasi.form', $current_team) . '?kode=' . $booking->kode_booking) }}"
     alt="QR Booking {{ $booking->kode_booking }}"
