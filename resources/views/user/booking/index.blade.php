@@ -27,7 +27,7 @@
             </form>
 
             <a href="{{ route('user.lapangan.index', $current_team) }}"
-               class="inline-flex items-center justify-center bg-green-600 text-white px-5 py-3 rounded-xl font-semibold hover:bg-green-700 transition">
+               class="inline-flex items-center justify-center bg-blue-600 text-white px-5 py-3 rounded-xl font-semibold hover:bg-blue-700 transition">
                 Booking Baru
             </a>
         </div>

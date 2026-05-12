@@ -1,96 +1,159 @@
 @extends('layouts.user')
 
 @section('content')
+<div class="max-w-7xl mx-auto space-y-8 text-slate-800">
 
-{{-- HERO --}}
-<section class="mb-8">
-    <div class="relative overflow-hidden glass-card rounded-[2.5rem] p-6 md:p-12 shadow-2xl">
-        <div class="absolute -top-24 -left-24 w-64 h-64 bg-emerald-500/10 rounded-full blur-[80px]"></div>
-        
-        <div class="relative z-10 text-center md:text-left">
-            <h1 class="text-3xl md:text-5xl font-black tracking-tight leading-tight uppercase italic">
-                Halo, <span class="text-emerald-400">{{ explode(' ', auth()->user()->name)[0] }}!</span> ⚽
-            </h1>
-            <p class="mt-4 text-white-400 text-sm md:text-lg max-w-xl font-medium italic">
-                "Kemenangan hari ini dimulai dari booking lapangan yang tepat."
+    <!-- HERO -->
+    <section class="bg-white rounded-3xl shadow-sm border border-slate-200 p-8 md:p-12 relative overflow-hidden">
+
+    <!-- BACKGROUND IMAGE -->
+    <div class="absolute inset-0">
+       <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1600&q=80"
+             alt="Futsal Field"
+             class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-white/75"></div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="relative z-10 flex flex-col lg:flex-row justify-between items-center gap-10">
+
+        <div class="max-w-2xl">
+            <p class="text-sm font-bold uppercase tracking-[0.3em] text-blue-500 mb-4">
+                Dashboard Player
             </p>
 
-            <div class="mt-8 flex flex-wrap justify-center md:justify-start gap-4">
+            <h1 class="text-4xl md:text-6xl font-black leading-tight text-slate-900">
+                Halo, {{ explode(' ', auth()->user()->name)[0] }} 👋
+            </h1>
+
+            <p class="mt-5 text-slate-700 text-lg leading-relaxed">
+                Kelola booking lapangan, pantau aktivitas pertandingan, dan nikmati pengalaman bermain yang lebih praktis.
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-4">
                 <a href="{{ route('user.lapangan.index', $current_team) }}"
-                   class="w-full md:w-auto bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-8 py-4 rounded-2xl font-black transition shadow-lg shadow-emerald-500/20 uppercase tracking-widest text-xs italic">
-                    BOOKING LAPANGAN 🏟️
+                   class="px-7 py-4 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold uppercase tracking-wide text-sm transition-all">
+                    Booking Lapangan
+                </a>
+
+                <a href="{{ route('user.booking.index', $current_team) }}"
+                   class="px-7 py-4 rounded-2xl border border-slate-300 hover:border-blue-500 hover:text-blue-600 text-slate-700 font-bold uppercase tracking-wide text-sm transition-all bg-white/80">
+                    Lihat Aktivitas
                 </a>
             </div>
         </div>
+
+        <!-- QUICK SUMMARY -->
+        <div class="grid grid-cols-2 gap-4 w-full max-w-md">
+
+            <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-5 border border-slate-200">
+                <p class="text-xs uppercase font-bold tracking-widest text-slate-500">Total</p>
+                <h3 class="text-4xl font-black mt-2">{{ $totalBookingSaya }}</h3>
+            </div>
+
+            <div class="bg-yellow-50/90 backdrop-blur-sm rounded-2xl p-5 border border-yellow-200">
+                <p class="text-xs uppercase font-bold tracking-widest text-yellow-600">Pending</p>
+                <h3 class="text-4xl font-black mt-2 text-yellow-600">{{ $bookingPending }}</h3>
+            </div>
+
+            <div class="bg-blue-50/90 backdrop-blur-sm rounded-2xl p-5 border border-blue-200">
+                <p class="text-xs uppercase font-bold tracking-widest text-blue-600">Lunas</p>
+                <h3 class="text-4xl font-black mt-2 text-blue-600">{{ $bookingLunas }}</h3>
+            </div>
+
+            <div class="bg-emerald-50/90 backdrop-blur-sm rounded-2xl p-5 border border-emerald-200">
+                <p class="text-xs uppercase font-bold tracking-widest text-emerald-600">Selesai</p>
+                <h3 class="text-4xl font-black mt-2 text-emerald-600">{{ $bookingSelesai }}</h3>
+            </div>
+
+        </div>
+
     </div>
 </section>
 
-{{-- STATS --}}
-<section class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-    <div class="glass-card rounded-3xl p-5 hover:border-emerald-500 transition-all duration-300">
-        <p class="text-[9px] font-black text-emerald-400 uppercase tracking-[0.2em] mb-1">Total Main</p>
-        <h2 class="text-3xl font-black">{{ $totalBookingSaya }}</h2>
-    </div>
+    <!-- HISTORY -->
+    <section class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
 
-    <div class="glass-card rounded-3xl p-5 hover:border-yellow-500 transition-all duration-300 text-yellow-500">
-        <p class="text-[9px] font-black uppercase tracking-[0.2em] mb-1">Menunggu</p>
-        <h2 class="text-3xl font-black">{{ $bookingPending }}</h2>
-    </div>
+        <div class="px-8 py-6 border-b border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <h3 class="text-2xl font-black text-slate-900">
+                    Riwayat Booking
+                </h3>
+                <p class="text-slate-500 mt-1">
+                    Aktivitas terbaru Anda.
+                </p>
+            </div>
 
-    <div class="glass-card rounded-3xl p-5 hover:border-emerald-500 transition-all duration-300 text-emerald-400">
-        <p class="text-[9px] font-black uppercase tracking-[0.2em] mb-1 text-emerald-400">Lunas</p>
-        <h2 class="text-3xl font-black text-emerald-400">{{ $bookingLunas }}</h2>
-    </div>
+            <a href="{{ route('user.booking.index', $current_team) }}"
+               class="text-blue-600 font-bold hover:underline">
+                Lihat Semua →
+            </a>
+        </div>
 
-    <div class="glass-card rounded-3xl p-5 hover:border-blue-500 transition-all duration-300 text-blue-400">
-        <p class="text-[9px] font-black uppercase tracking-[0.2em] mb-1 text-blue-400">Selesai</p>
-        <h2 class="text-3xl font-black text-blue-400">{{ $bookingSelesai }}</h2>
-    </div>
-</section>
-
-{{-- LATEST ACTIVITIES --}}
-<section class="glass-card rounded-[2.5rem] overflow-hidden">
-    <div class="px-8 py-6 border-b border-white/10 flex flex-col md:flex-row gap-4 justify-between items-center">
-        <h3 class="text-lg font-black uppercase tracking-widest italic">Riwayat Terakhir</h3>
-        <a href="{{ route('user.booking.index', $current_team) }}" class="text-emerald-400 font-black text-[10px] hover:underline uppercase tracking-widest">Lihat Semua →</a>
-    </div>
-
-    <div class="overflow-x-auto overflow-y-hidden">
-        <table class="w-full min-w-[600px]">
-            <thead class="bg-white/5">
-                <tr class="text-[10px] font-black text-white-500 uppercase tracking-[0.3em]">
-                    <th class="px-8 py-4 text-left">Lapangan</th>
-                    <th class="px-8 py-4 text-center">Status</th>
-                    <th class="px-8 py-4 text-right">Total</th>
-                </tr>
-            </thead>
-            <tbody class="divide-y divide-white/5">
-                @forelse($bookingTerbaru as $booking)
-                    <tr class="hover:bg-white/5 transition">
-                        <td class="px-8 py-6 font-bold text-white-300">
-                            {{ $booking->lapangan->nama ?? '-' }}
-                            <div class="text-[10px] text-white-500 mt-1 font-medium">{{ \Carbon\Carbon::parse($booking->tanggal)->format('d M Y') }} | {{ $booking->jam_mulai }}</div>
-                        </td>
-                        <td class="px-8 py-6 text-center">
-                            @php $status = strtolower($booking->status); @endphp
-                            @if($status === 'pending')
-                                <span class="px-3 py-1 rounded-full bg-yellow-500/10 text-yellow-500 text-[9px] font-black uppercase tracking-widest border border-yellow-500/20">Pending</span>
-                            @elseif($status === 'lunas')
-                                <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-[9px] font-black uppercase tracking-widest border border-emerald-500/20 text-center">Lunas</span>
-                            @else
-                                <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-[9px] font-black uppercase tracking-widest border border-blue-500/20 text-center text-center">Selesai</span>
-                            @endif
-                        </td>
-                        <td class="px-8 py-6 text-right font-black text-emerald-400">Rp{{ number_format($booking->total_harga, 0, ',', '.') }}</td>
+        <div class="overflow-x-auto">
+            <table class="w-full min-w-[800px]">
+                <thead class="bg-slate-50">
+                    <tr class="text-sm uppercase tracking-wide text-slate-500 font-bold">
+                        <th class="px-8 py-4 text-left">Lapangan</th>
+                        <th class="px-8 py-4 text-center">Tanggal</th>
+                        <th class="px-8 py-4 text-center">Status</th>
+                        <th class="px-8 py-4 text-right">Total</th>
                     </tr>
-                @empty
-                    <tr>
-                        <td colspan="3" class="px-8 py-20 text-center text-white-500 italic">Belum ada aktivitas booking.</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
-</section>
+                </thead>
 
+                <tbody class="divide-y divide-slate-100">
+                    @forelse($bookingTerbaru as $booking)
+                        <tr class="hover:bg-slate-50 transition-all">
+
+                            <td class="px-8 py-6">
+                                <div class="font-bold text-lg">
+                                    {{ $booking->lapangan->nama ?? '-' }}
+                                </div>
+                            </td>
+
+                            <td class="px-8 py-6 text-center text-slate-600">
+                                {{ \Carbon\Carbon::parse($booking->tanggal)->format('d M Y') }}
+                                <div class="text-xs text-slate-400 mt-1">
+                                    {{ $booking->jam_mulai }}
+                                </div>
+                            </td>
+
+                            <td class="px-8 py-6 text-center">
+                                @php $status = strtolower($booking->status); @endphp
+
+                                @if($status === 'pending')
+                                    <span class="px-4 py-2 rounded-full bg-yellow-100 text-yellow-700 text-xs font-bold uppercase">
+                                        Pending
+                                    </span>
+                                @elseif($status === 'lunas')
+                                    <span class="px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-xs font-bold uppercase">
+                                        Lunas
+                                    </span>
+                                @else
+                                    <span class="px-4 py-2 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold uppercase">
+                                        Selesai
+                                    </span>
+                                @endif
+                            </td>
+
+                            <td class="px-8 py-6 text-right font-black text-blue-600 text-lg">
+                                Rp{{ number_format($booking->total_harga, 0, ',', '.') }}
+                            </td>
+
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4" class="py-16 text-center text-slate-500 italic">
+                                Belum ada aktivitas booking.
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+
+</div>
 @endsection
+```

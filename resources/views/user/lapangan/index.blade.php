@@ -1,125 +1,197 @@
 @extends('layouts.user')
 
 @section('content')
-<!-- Hero Section -->
-<section class="mb-12 relative">
-    <div class="glass-card rounded-[3rem] p-12 overflow-hidden relative">
-        <div class="absolute -right-20 -top-20 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl"></div>
-        <div class="max-w-3xl relative z-10">
-            <p class="text-[10px] font-black text-emerald-500 uppercase tracking-[0.4em] mb-4">Pro Futsal Management</p>
-            <h1 class="text-4xl md:text-6xl font-black text-white leading-none tracking-tighter uppercase italic">
-                Pilih <span class="text-emerald-500">Arena</span><br>Tunjukkan Skillmu.
-            </h1>
-            <p class="mt-6 text-white-400 font-bold uppercase tracking-widest text-xs leading-relaxed max-w-xl">
-                Booking lapangan futsal standar internasional dengan sistem pembayaran instan dan jadwal yang selalu akurat.
-            </p>
-        </div>
+<div class="space-y-10 text-slate-800">
+
+    <!-- HERO -->
+    <section class="bg-white rounded-3xl border border-slate-200 shadow-sm p-8 md:p-12 relative overflow-hidden">
+
+    <!-- BACKGROUND IMAGE -->
+    <div class="absolute inset-0">
+        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1600&q=80"
+             alt="Futsal Arena"
+             class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-white/80"></div>
     </div>
+
+    <!-- CONTENT -->
+    <div class="relative z-10 max-w-4xl">
+        <p class="text-sm font-bold uppercase tracking-[0.3em] text-white-600 mb-4">
+            Premium Arena Booking
+        </p>
+
+        <h1 class="text-4xl md:text-6xl font-black leading-tight text-slate-900">
+            Pilih Arena Terbaik,<br>
+            <span class="text-white-600">Main Lebih Maksimal.</span>
+        </h1>
+
+        <p class="mt-6 text-slate-700 text-lg leading-relaxed max-w-2xl">
+            Temukan lapangan futsal berkualitas, jadwal fleksibel, dan proses booking cepat dalam satu platform modern.
+        </p>
+    </div>
+
 </section>
 
-<!-- Filter Section -->
-<section class="mb-12">
-    <div class="glass-card rounded-[2.5rem] p-8 border-white/5">
+    <!-- FILTER -->
+    <section class="bg-white rounded-3xl border border-slate-200 shadow-sm p-8">
         <form method="GET" action="{{ route('user.lapangan.index', $current_team) }}">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+
+                <!-- SEARCH -->
                 <div class="md:col-span-2">
-                    <input type="text" name="search" value="{{ request('search') }}"
-                           placeholder="Cari Nama Arena atau Jenis Lapangan..."
-                           class="w-full bg-white/5 border border-white/10 text-white font-bold uppercase tracking-widest text-xs px-8 py-5 rounded-2xl focus:outline-none focus:border-emerald-500 transition-all placeholder:text-white-600">
+                    <input type="text"
+                           name="search"
+                           value="{{ request('search') }}"
+                           placeholder="Cari nama arena atau jenis lapangan..."
+                           class="w-full border border-slate-300 rounded-2xl px-6 py-4 text-slate-800 font-medium focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
                 </div>
 
+                <!-- STATUS -->
                 <div>
-                    <select name="status" class="w-full bg-white/5 border border-white/10 text-white font-black uppercase tracking-widest text-[10px] px-6 py-5 rounded-2xl focus:outline-none focus:border-emerald-500 transition appearance-none cursor-pointer">
-                        <option value="" class="bg-slate-900">Semua Status</option>
-                        <option value="tersedia" class="bg-slate-900" {{ request('status') == 'tersedia' ? 'selected' : '' }}>Tersedia</option>
-                        <option value="perbaikan" class="bg-slate-900" {{ request('status') == 'perbaikan' ? 'selected' : '' }}>Maintenance</option>
+                    <select name="status"
+                            class="w-full border border-slate-300 rounded-2xl px-6 py-4 text-slate-700 font-medium focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+
+                        <option value="">Semua Status</option>
+                        <option value="tersedia" {{ request('status') == 'tersedia' ? 'selected' : '' }}>
+                            Tersedia
+                        </option>
+                        <option value="perbaikan" {{ request('status') == 'perbaikan' ? 'selected' : '' }}>
+                            Maintenance
+                        </option>
                     </select>
                 </div>
 
-                <button type="submit" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-5 rounded-2xl transition shadow-xl shadow-emerald-500/20 uppercase tracking-widest text-xs italic">
-                    Filter Arena
-                </button>
+                <!-- BUTTON -->
+                <button type="submit"
+        class="bg-blue-600 hover:bg-blue-700 text-white rounded-2xl px-8 py-4 font-bold uppercase tracking-wide transition-all">
+    Filter
+</button>
+
             </div>
         </form>
-    </div>
-</section>
-
-<!-- Grid Section -->
-@if($lapangans->count() > 0)
-    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        @foreach($lapangans as $lapangan)
-            <div class="glass-card rounded-[3rem] overflow-hidden group hover:border-emerald-500/50 transition-all duration-500 flex flex-col">
-                <div class="h-64 relative overflow-hidden">
-                    @if($lapangan->gambar)
-                        <img src="{{ asset('uploads/' . $lapangan->gambar) }}"
-                             alt="{{ $lapangan->nama }}"
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    @else
-                        <div class="w-full h-full flex items-center justify-center bg-white/5 text-slate-700 font-black uppercase tracking-[0.2em] text-xs">
-                            No Visual Data
-                        </div>
-                    @endif
-                    
-                    <div class="absolute top-6 right-6">
-                        @php $status = strtolower(trim($lapangan->status)); @endphp
-                        @if($status == 'tersedia')
-                            <span class="px-4 py-2 text-[9px] rounded-xl bg-emerald-500/90 backdrop-blur-md text-slate-950 font-black uppercase tracking-widest">Available</span>
-                        @else
-                            <span class="px-4 py-2 text-[9px] rounded-xl bg-red-600/90 backdrop-blur-md text-white font-black uppercase tracking-widest">Closed</span>
-                        @endif
-                    </div>
-                </div>
-
-                <div class="p-8 flex-1 flex flex-col">
-                    <div class="flex items-start justify-between gap-4 mb-4">
-                        <div>
-                            <h3 class="text-xl font-black text-white tracking-tighter uppercase italic">{{ $lapangan->nama }}</h3>
-                            <p class="text-[10px] font-black text-emerald-500 uppercase tracking-widest mt-1">{{ $lapangan->jenis ?: 'Premium Arena' }}</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-1">Rate / Jam</p>
-                            <p class="text-xl font-black text-white italic tracking-tight">Rp{{ number_format($lapangan->harga, 0, ',', '.') }}</p>
-                        </div>
-                    </div>
-
-                    <p class="text-slate-400 text-xs font-medium leading-relaxed mb-8 flex-1">
-                        {{ $lapangan->deskripsi ?: 'Arena futsal kualitas terbaik dengan pencahayaan maksimal dan sirkulasi udara optimal untuk performa bertanding Anda.' }}
-                    </p>
-
-                    <div class="grid grid-cols-2 gap-3 mt-auto">
-                        <a href="{{ route('user.lapangan.show', [$current_team, $lapangan->id]) }}"
-                           class="text-center bg-white/5 border border-white/10 text-white py-4 rounded-2xl hover:bg-white/10 transition font-black uppercase tracking-widest text-[10px]">
-                            Detail
-                        </a>
-
-                        @if($status == 'tersedia')
-                            <a href="{{ route('booking.create', [$current_team, 'lapangan_id' => $lapangan->id]) }}"
-                               class="text-center bg-emerald-500 text-slate-950 py-4 rounded-2xl hover:bg-emerald-400 transition font-black uppercase tracking-widest text-[10px] italic shadow-lg shadow-emerald-500/20">
-                                Booking
-                            </a>
-                        @else
-                            <button disabled class="text-center bg-white/5 text-slate-600 py-4 rounded-2xl font-black uppercase tracking-widest text-[10px] cursor-not-allowed">
-                                Offline
-                            </button>
-                        @endif
-                    </div>
-                </div>
-            </div>
-        @endforeach
     </section>
 
-    <div class="mt-12">
-        {{ $lapangans->links() }}
-    </div>
-@else
-    <div class="glass-card rounded-[3rem] p-20 text-center border-dashed border-white/10">
-        <div class="text-5xl mb-6 opacity-20">🏟️</div>
-        <h3 class="text-2xl font-black text-white uppercase tracking-tighter italic">Arena Tidak Ditemukan</h3>
-        <p class="text-slate-500 font-bold uppercase tracking-widest text-xs mt-2 mb-8">Coba sesuaikan filter atau kata kunci pencarian Anda.</p>
-        <a href="{{ route('user.lapangan.index', $current_team) }}"
-           class="inline-block bg-emerald-500 text-slate-950 px-10 py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-emerald-400 transition">
-            Reset Filter
-        </a>
-    </div>
-@endif
+    <!-- GRID -->
+    @if($lapangans->count() > 0)
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            @foreach($lapangans as $lapangan)
+                @php $status = strtolower(trim($lapangan->status)); @endphp
+
+                <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col">
+
+                    <!-- IMAGE -->
+                    <div class="h-64 relative overflow-hidden">
+                        @if($lapangan->gambar)
+                            <img src="{{ asset('uploads/' . $lapangan->gambar) }}"
+                                 alt="{{ $lapangan->nama }}"
+                                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        @else
+                            <div class="w-full h-full bg-slate-100 flex items-center justify-center text-slate-400 font-bold">
+                                No Image
+                            </div>
+                        @endif
+
+                        <!-- STATUS BADGE -->
+                        <div class="absolute top-5 right-5">
+                            @if($status == 'tersedia')
+                                <span class="px-4 py-2 rounded-xl bg-emerald-100 text-emerald-700 text-xs font-bold uppercase">
+                                    Tersedia
+                                </span>
+                            @else
+                                <span class="px-4 py-2 rounded-xl bg-red-100 text-red-700 text-xs font-bold uppercase">
+                                    Maintenance
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <!-- CONTENT -->
+                    <div class="p-7 flex flex-col flex-1">
+
+                        <div class="flex justify-between items-start gap-4 mb-4">
+
+                            <div>
+                                <h3 class="text-2xl font-black text-slate-900 leading-tight">
+                                    {{ $lapangan->nama }}
+                                </h3>
+
+                                <p class="text-sm font-bold text-blue-600 mt-2 uppercase tracking-wide">
+                                    {{ $lapangan->jenis ?: 'Premium Arena' }}
+                                </p>
+                            </div>
+
+                            <div class="text-right">
+                                <p class="text-xs uppercase font-bold text-slate-400">
+                                    Harga / Jam
+                                </p>
+
+                                <p class="text-xl font-black text-slate-900 mt-1">
+                                    Rp{{ number_format($lapangan->harga, 0, ',', '.') }}
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <!-- DESCRIPTION -->
+                        <p class="text-slate-600 leading-relaxed text-sm mb-8 flex-1">
+                            {{ $lapangan->deskripsi ?: 'Arena futsal berkualitas tinggi dengan fasilitas premium untuk pengalaman bermain terbaik.' }}
+                        </p>
+
+                        <!-- ACTION -->
+                        <div class="grid grid-cols-2 gap-3 mt-auto">
+
+                            <a href="{{ route('user.lapangan.show', [$current_team, $lapangan->id]) }}"
+                               class="text-center border border-slate-300 hover:border-blue-500 hover:text-blue-600 py-4 rounded-2xl font-bold uppercase tracking-wide text-sm transition-all">
+                                Detail
+                            </a>
+
+                            @if($status == 'tersedia')
+                                <a href="{{ route('booking.create', [$current_team, 'lapangan_id' => $lapangan->id]) }}"
+                                   class="text-center bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-2xl font-bold uppercase tracking-wide text-sm transition-all">
+                                    Booking
+                                </a>
+                            @else
+                                <button disabled
+                                        class="text-center bg-slate-100 text-slate-400 py-4 rounded-2xl font-bold uppercase tracking-wide text-sm cursor-not-allowed">
+                                    Offline
+                                </button>
+                            @endif
+
+                        </div>
+
+                    </div>
+                </div>
+            @endforeach
+
+        </section>
+
+        <!-- PAGINATION -->
+        <div class="pt-6">
+            {{ $lapangans->links() }}
+        </div>
+
+    @else
+
+        <!-- EMPTY -->
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-20 text-center">
+            <div class="text-6xl mb-6">🏟️</div>
+
+            <h3 class="text-3xl font-black text-slate-900">
+                Arena Tidak Ditemukan
+            </h3>
+
+            <p class="text-slate-500 mt-3 text-lg">
+                Coba ubah filter atau kata kunci pencarian Anda.
+            </p>
+
+            <a href="{{ route('user.lapangan.index', $current_team) }}"
+               class="inline-block mt-8 bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-2xl font-bold uppercase tracking-wide transition-all">
+                Reset Filter
+            </a>
+        </div>
+
+    @endif
+
+</div>
 @endsection
