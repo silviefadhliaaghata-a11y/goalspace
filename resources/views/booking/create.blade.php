@@ -202,48 +202,78 @@
             <input type="hidden" name="total_harga" id="total_harga">
 
         </section>
-        <div class="bg-blue-50 border border-blue-200 rounded-2xl p-6 mb-8">
-    <h3 class="font-black text-blue-700 uppercase mb-4">
-        Informasi Pembayaran
-    </h3>
+        <!-- INFORMASI PEMBAYARAN MODERN -->
+<div class="bg-gradient-to-br from-blue-50 to-cyan-50 border border-blue-200 rounded-3xl p-8 mb-8 shadow-sm">
+    <div class="flex flex-col lg:flex-row gap-8 items-start">
 
-    <p class="font-semibold text-slate-700">
-        Transfer Bank BCA
-    </p>
+        <!-- TRANSFER BANK -->
+        <div class="flex-1 w-full">
+            <h3 class="font-black text-blue-700 uppercase tracking-widest mb-6 text-lg">
+                Informasi Pembayaran
+            </h3>
 
-    <p class="text-2xl font-black text-slate-900 mt-2">
-        1234567890
-    </p>
+            <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <p class="text-sm font-bold uppercase tracking-widest text-slate-500 mb-3">
+                    Transfer Bank BCA
+                </p>
 
-    <p class="text-sm text-slate-500 mt-2">
-        a.n GoalSpace Arena
-    </p>
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div>
+                        <p
+                            id="rekening-payment"
+                            class="text-3xl font-black text-slate-900 tracking-wider"
+                        >
+                            8730775823
+                        </p>
 
-    <p class="mt-4 text-sm text-slate-500">
-        Atau scan QRIS:
-    </p>
+                        <p class="text-sm text-slate-500 mt-2">
+                            a.n GoalSpace Arena
+                        </p>
+                    </div>
 
-    <img src="{{ asset('images/qris-goalspace.png') }}"
-         alt="QRIS"
-         class="w-48 mt-4 rounded-2xl border border-slate-200">
-</div>
-
-        <!-- PAYMENT -->
-        <section class="bg-white rounded-3xl border border-slate-200 shadow-sm p-8 space-y-8">
-
-            <div>
-                <label class="block text-sm font-bold uppercase tracking-widest text-slate-500 mb-3">
-                    Metode Pembayaran
-                </label>
-
-                <select name="metode_pembayaran"
-                        class="w-full border border-slate-300 rounded-2xl px-6 py-4 font-semibold focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none"
-                        required>
-                    <option value="">-- Pilih Metode --</option>
-                    <option value="Transfer Bank">Transfer Bank</option>
-                    <option value="QRIS">QRIS</option>
-                </select>
+                    <button
+    type="button"
+    onclick="copyRekeningPayment(this)"
+    class="inline-flex items-center justify-center p-3 rounded-xl border border-slate-300 hover:bg-slate-100 transition group"
+    title="Salin Nomor Rekening"
+>
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-5 h-5 text-slate-600 group-hover:text-slate-900"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+    >
+        <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+        <rect x="2" y="2" width="13" height="13" rx="2"></rect>
+    </svg>
+</button>
+                </div>
             </div>
+        </div>
+
+        <!-- QRIS -->
+        <div class="w-full lg:w-auto">
+            <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm text-center">
+                <p class="text-sm font-bold uppercase tracking-widest text-slate-500 mb-4">
+                    Scan QRIS
+                </p>
+
+                <img
+                    src="https://i.imgur.com/MrRckld.jpeg"
+                    alt="QRIS GoalSpace"
+                    class="w-56 mx-auto rounded-2xl border border-slate-200"
+                >
+
+                <p class="text-xs text-slate-500 mt-4 leading-relaxed">
+                    Gunakan m-banking / e-wallet untuk scan QRIS
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
 
             <div>
                 <label class="block text-sm font-bold uppercase tracking-widest text-slate-500 mb-3">
@@ -515,6 +545,44 @@ function updateFileName(input) {
     if (input.files.length > 0) {
         display.innerText = '✅ ' + input.files[0].name;
     }
+}
+</script>
+<script>
+function copyRekeningPayment(button) {
+    const rekening = document.getElementById('rekening-payment').innerText;
+
+    navigator.clipboard.writeText(rekening)
+        .then(() => {
+            button.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     class="w-5 h-5 text-green-600"
+                     fill="none"
+                     viewBox="0 0 24 24"
+                     stroke="currentColor"
+                     stroke-width="2">
+                    <path stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M5 13l4 4L19 7"/>
+                </svg>
+            `;
+
+            setTimeout(() => {
+                button.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         class="w-5 h-5 text-slate-600"
+                         fill="none"
+                         viewBox="0 0 24 24"
+                         stroke="currentColor"
+                         stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                        <rect x="2" y="2" width="13" height="13" rx="2"></rect>
+                    </svg>
+                `;
+            }, 1500);
+        })
+        .catch(() => {
+            alert('Gagal menyalin nomor rekening');
+        });
 }
 </script>
 @endsection

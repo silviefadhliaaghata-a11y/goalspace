@@ -30,7 +30,7 @@
                 <input type="text"
                        name="kode_booking"
                        value="{{ old('kode_booking', $booking->kode_booking ?? request('kode')) }}"
-                       placeholder="BOOK-202604XX-XXXX"
+                       placeholder="GS-000XXX"
                        class="flex-1 bg-white/5 border border-white/10 text-white text-xl px-8 py-5 rounded-[2rem] focus:outline-none focus:border-emerald-500 transition-all placeholder:text-slate-700 font-black uppercase tracking-widest"
                        required autofocus>
 
